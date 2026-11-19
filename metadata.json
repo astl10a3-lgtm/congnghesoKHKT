@@ -1,0 +1,10 @@
+{
+  "name": "khkt ",
+  "description": "Nền tảng AI phân tích rác thải đa góc độ, dựng mô hình 3D, đo lường kích thước, kiểm tra an toàn và hướng dẫn chế tạo đồ thủ công tái chế tương tác.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

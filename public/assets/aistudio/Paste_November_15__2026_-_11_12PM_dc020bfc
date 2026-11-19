@@ -1,0 +1,1249 @@
+# MASTER DEVELOPMENT PROMPT
+# RECYCLE ART STUDIO – ADVANCED AI VISION & 3D RECONSTRUCTION UPGRADE
+
+**Dành cho: Google Gemini / Google AI Studio / AI Coding Agent**
+
+**Dự án:** Recycle Art Studio  
+**Nhiệm vụ:** Nâng cấp hệ thống AI nhận diện rác thải, phân tích hình học, đo kích thước và tái tạo mô hình 3D từ ảnh chụp thực tế.
+
+---
+
+# PHẦN 0. CHỈ THỊ TỔNG QUÁT – ĐỌC TRƯỚC KHI THỰC HIỆN
+
+Bạn đang được giao nhiệm vụ nâng cấp một dự án phần mềm đã tồn tại và có mã nguồn thực tế.
+
+Không coi đây là một dự án mới cần xây dựng lại từ đầu.
+
+Hãy đóng vai một nhóm chuyên gia phát triển sản phẩm AI gồm:
+
+1. Senior AI Engineer – chuyên về Computer Vision, Multimodal AI và Image Understanding.
+2. Computer Vision Engineer – chuyên về Object Detection, Image Segmentation, Camera Geometry và 3D Reconstruction.
+3. Senior Three.js Engineer – chuyên về WebGL, Mesh Generation, UV Mapping, GLTF và Procedural Geometry.
+4. Full-stack Engineer – chuyên về React, TypeScript, Node.js và API Architecture.
+5. Software Architect – chịu trách nhiệm về tính ổn định, hiệu suất và khả năng mở rộng của hệ thống.
+
+## MỤC TIÊU CỐT LÕI
+
+Nâng cấp Recycle Art Studio thành một hệ thống có khả năng:
+
+- Tiếp nhận ảnh chụp rác thải từ camera hoặc thiết bị.
+- Cho phép người dùng khoanh vùng chính xác vật thể cần phân tích.
+- Tự động phân đoạn vật thể và loại bỏ ảnh hưởng của nền.
+- Nhận diện loại rác, vật liệu và đặc điểm cấu tạo.
+- Phân tích hình dáng, biên dạng, tỷ lệ và cấu trúc không gian.
+- Ước lượng hoặc đo kích thước dựa trên dữ liệu hình ảnh và vật chuẩn.
+- Kết hợp nhiều góc chụp để hiểu vật thể trong không gian 3D.
+- Tạo mô hình 3D có hình dạng, tỷ lệ, màu sắc và chi tiết gần với vật thể thật.
+- Cho phép xoay 360 độ, quan sát, đo đạc và sử dụng mô hình trong hệ thống tái chế.
+
+**NGUYÊN TẮC ƯU TIÊN:**
+
+Chất lượng nhận diện và khả năng tái tạo hình học phải được ưu tiên hơn việc bổ sung hiệu ứng giao diện hoặc các tính năng phụ.
+
+Không được chỉ thay đổi prompt AI rồi tuyên bố hệ thống đã được nâng cấp.
+
+Phải triển khai các thuật toán, module, API và luồng dữ liệu thực sự.
+
+---
+
+# PHẦN 1. PHÂN TÍCH TOÀN BỘ SOURCE CODE HIỆN TẠI
+
+Trước khi chỉnh sửa bất kỳ file nào, hãy kiểm tra toàn bộ cấu trúc dự án.
+
+Dự án hiện tại sử dụng kiến trúc:
+
+- Frontend: React + TypeScript + Vite.
+- Backend: Node.js + Express.
+- AI: Google Gemini và OpenAI Vision.
+- 3D Engine: Three.js.
+- Hiển thị mô hình: React Three Fiber hoặc Three.js tùy module hiện có.
+- API xử lý ảnh: server/apiRouter.ts và server/gemini.ts.
+
+Các file quan trọng cần kiểm tra:
+
+**Frontend:**
+- src/components/MaterialCapture.tsx
+- src/components/ClassificationSafetyCard.tsx
+- src/components/GeometryCalculatorCard.tsx
+- src/three/MaterialScanner3D.tsx
+- src/three/CraftViewer3D.tsx
+- src/components/InteractiveCraftGuide.tsx
+- src/App.tsx
+
+**Backend:**
+- server/gemini.ts
+- server/apiRouter.ts
+- server/db.ts
+- server.ts
+- api/index.ts
+
+**Cấu hình:**
+- package.json
+- tsconfig.json
+- vite.config.ts
+- Các biến môi trường liên quan đến AI.
+
+Đây là danh sách ưu tiên, không phải danh sách giới hạn. Hãy tìm thêm các module liên quan nếu cần.
+
+## 1.1. Kiểm tra mối liên hệ giữa các module
+
+Vẽ sơ đồ luồng dữ liệu hiện tại:
+
+Camera → MaterialCapture → App.tsx → API → AI Vision → JSON → MaterialScanner3D → Three.js.
+
+Xác định:
+
+- Ảnh được tạo ra như thế nào?
+- Ảnh được mã hóa và gửi đi ra sao?
+- AI nhận dữ liệu nào?
+- Kết quả AI được kiểm tra như thế nào?
+- Dữ liệu kích thước được lưu ở đâu?
+- Thông số hình học được truyền sang Three.js bằng cách nào?
+- Mô hình 3D được tạo từ dữ liệu nào?
+- Những module nào đang sử dụng dữ liệu Demo?
+- Những module nào chưa được kết nối?
+
+## 1.2. Kiểm tra lỗi cũ
+
+Đặc biệt kiểm tra các vấn đề đã được xác định:
+
+- Gemini model ID và cấu hình API.
+- Xử lý URL ảnh và Base64.
+- Fallback Demo không minh bạch.
+- normalizeProduct.
+- resolveModelType.
+- buildMaterialMesh.
+- buildPhotorealisticCraftMesh.
+- Các mô hình 3D đã viết nhưng chưa được gọi.
+- Sai lệch kích thước giữa AI và Three.js.
+- Quản lý tài nguyên GPU.
+- Đồng bộ trạng thái khi đổi vật liệu.
+
+Không được bỏ qua những lỗi này trong quá trình nâng cấp.
+
+---
+
+# PHẦN 2. THIẾT KẾ LẠI QUY TRÌNH CHỤP ẢNH THÔNG MINH
+
+Đây là một trong những hạng mục quan trọng nhất của dự án.
+
+Không để người dùng chụp một bức ảnh bất kỳ rồi gửi trực tiếp cho AI.
+
+Hãy xây dựng một hệ thống hướng dẫn chụp ảnh có khả năng kiểm tra và chuẩn hóa dữ liệu đầu vào.
+
+## 2.1. Chuẩn bị môi trường chụp
+
+Trước khi bật camera, giao diện cần hiển thị hướng dẫn:
+
+- Đặt vật thể ở nơi trống trải.
+- Chọn khu vực có ánh sáng đầy đủ.
+- Ưu tiên nền đơn sắc, ít chi tiết.
+- Chọn nền có màu tương phản với vật thể.
+- Đảm bảo toàn bộ vật thể nằm trong khung hình.
+- Không để vật thể bị che khuất.
+- Không đặt nhiều vật thể chồng lên nhau.
+- Hạn chế bóng đổ và phản chiếu mạnh.
+- Không chụp quá gần khiến vật thể bị méo phối cảnh.
+
+Ví dụ:
+
+Chụp một chai nhựa màu trong suốt nên sử dụng nền có độ tương phản phù hợp, không có quá nhiều vật dụng phía sau và tránh ánh sáng chiếu trực tiếp gây lóa.
+
+Chụp một miếng vải màu đen nên sử dụng nền sáng để thuật toán dễ xác định đường biên.
+
+## 2.2. Xây dựng giao diện camera thông minh
+
+Nâng cấp MaterialCapture.tsx.
+
+Yêu cầu:
+
+- Sử dụng MediaDevices API để mở camera.
+- Hỗ trợ camera trước và sau khi thiết bị cho phép.
+- Hiển thị khung hướng dẫn đặt vật thể.
+- Có thể bật hoặc tắt lưới căn chỉnh.
+- Hiển thị trạng thái lấy nét nếu thiết bị hỗ trợ.
+- Kiểm tra độ sáng và độ nét.
+- Cảnh báo khi vật thể nằm ngoài khung hình.
+- Cho phép chụp lại.
+- Cho phép tải ảnh từ thiết bị.
+- Tối ưu ảnh trước khi upload.
+
+Không yêu cầu trình duyệt phải cung cấp tính năng phần cứng mà thiết bị không hỗ trợ. Phải có fallback phù hợp.
+
+## 2.3. Xây dựng chức năng khoanh vùng đối tượng
+
+ĐÂY LÀ CHỨC NĂNG BẮT BUỘC.
+
+Sau khi chụp ảnh, hệ thống phải hiển thị một màn hình xem trước.
+
+Người dùng được phép:
+
+1. Dùng chuột kéo để tạo khung chữ nhật quanh vật thể.
+2. Điều chỉnh bốn cạnh và bốn góc của khung.
+3. Di chuyển khung chọn.
+4. Phóng to ảnh để khoanh vùng chính xác.
+5. Xác nhận đối tượng.
+6. Chọn lại nếu khoanh sai.
+
+Hỗ trợ cả màn hình cảm ứng và desktop.
+
+### Yêu cầu kỹ thuật
+
+Có thể sử dụng:
+
+- Canvas API.
+- Pointer Events.
+- SVG Overlay.
+- Konva hoặc thư viện tương đương nếu thực sự cần thiết.
+
+Lưu lại tọa độ vùng chọn theo hệ tọa độ ảnh gốc, không lưu tọa độ màn hình hiển thị.
+
+Chuẩn hóa Bounding Box:
+
+- xMin.
+- yMin.
+- xMax.
+- yMax.
+
+Các giá trị phải được chuẩn hóa theo kích thước ảnh.
+
+Không được để vùng chọn sai lệch khi người dùng zoom, pan hoặc thay đổi kích thước màn hình.
+
+## 2.4. AI Segmentation – Tách vật thể khỏi nền
+
+Sau khi người dùng khoanh vùng, hệ thống phải tiếp tục phân đoạn đối tượng.
+
+Nghiên cứu tích hợp:
+
+- SAM 2.
+- Segment Anything.
+- Các mô hình segmentation phù hợp với trình duyệt hoặc backend.
+
+Quy trình:
+
+Ảnh gốc + Bounding Box → Segmentation Model → Segmentation Mask → Ảnh vật thể đã tách nền.
+
+Yêu cầu:
+
+- Giữ nguyên hình dáng vật thể.
+- Không cắt mất các bộ phận.
+- Loại bỏ nền ngoài vùng chọn.
+- Bảo toàn các vùng rỗng thực sự của vật thể nếu thuật toán hỗ trợ.
+- Xử lý được vật thể trong suốt hoặc có bề mặt phản chiếu ở mức phù hợp.
+- Cho phép người dùng chỉnh sửa mask khi AI phân đoạn sai.
+
+Lưu lại:
+
+- Original Image.
+- Bounding Box.
+- Segmentation Mask.
+- Cropped Object Image.
+- Processed Image.
+
+Không xóa ảnh gốc vì ảnh này còn cần thiết cho việc phân tích phối cảnh, kích thước và hình học.
+
+## 2.5. Kiểm tra chất lượng ảnh
+
+Xây dựng một Image Quality Assessment module.
+
+Đánh giá:
+
+- Blur Score.
+- Brightness.
+- Contrast.
+- Resolution.
+- Object Visibility.
+- Occlusion.
+- Segmentation Quality.
+- Background Complexity.
+
+Có thể sử dụng Laplacian Variance để đánh giá độ mờ, nhưng phải hiệu chỉnh ngưỡng theo kích thước ảnh và điều kiện thực tế.
+
+Kết quả trả về:
+
+- GOOD: Có thể phân tích.
+- WARNING: Có thể phân tích nhưng độ tin cậy bị giảm.
+- REJECTED: Yêu cầu chụp lại.
+
+Nếu ảnh không đạt yêu cầu, phải nói rõ lý do.
+
+Ví dụ:
+
+"Ảnh đang bị mờ, vui lòng giữ điện thoại ổn định và chụp lại."
+
+"Vật thể đang bị che khuất, hãy di chuyển vật cản."
+
+"Vùng khoanh chưa bao phủ toàn bộ vật thể."
+
+Không được âm thầm tiếp tục phân tích với ảnh đầu vào không đạt chất lượng.
+
+---
+
+# PHẦN 3. HỆ THỐNG CHỤP NHIỀU GÓC – MULTI-VIEW CAPTURE
+
+Một bức ảnh đơn không thể cung cấp đầy đủ thông tin về chiều sâu và mặt sau của vật thể.
+
+Do đó, hãy thiết kế chế độ chụp nhiều góc.
+
+## 3.1. Các góc chụp
+
+Tối thiểu hỗ trợ:
+
+1. Front View – Chính diện.
+2. Side View – Mặt bên.
+3. Three-quarter View – Góc nghiêng khoảng 45 độ.
+4. Back View – Mặt sau.
+5. Top View – Nhìn từ trên xuống.
+6. Bottom View – Đáy vật thể khi cần thiết.
+
+Không bắt buộc người dùng chụp đủ sáu góc trong mọi trường hợp.
+
+AI cần xác định loại vật thể và những góc còn thiếu.
+
+## 3.2. Hướng dẫn chụp tự động
+
+Ví dụ với chai nhựa:
+
+- Chụp chính diện để nhận diện thân chai.
+- Chụp nghiêng để nhận diện độ cong.
+- Chụp phần cổ và nắp.
+- Chụp đáy để xác định cấu tạo đáy.
+
+Ví dụ với hộp carton:
+
+- Chụp mặt trước.
+- Chụp mặt bên.
+- Chụp mặt trên.
+- Chụp các nếp gấp nếu cần.
+
+Ví dụ với vải:
+
+- Chụp mặt trước.
+- Chụp mặt sau.
+- Chụp vùng nếp gấp.
+- Chụp chi tiết chất liệu.
+
+## 3.3. Kiểm tra tính nhất quán giữa các ảnh
+
+Đây là bước quan trọng.
+
+Phải kiểm tra:
+
+- Các ảnh có cùng một vật thể không?
+- Vật thể có bị thay đổi trạng thái giữa các lần chụp không?
+- Có ảnh nào bị thiếu hoặc mờ không?
+- Có góc nào bị che khuất không?
+- Các đặc điểm hình học có mâu thuẫn không?
+
+Nếu các ảnh không thống nhất, yêu cầu chụp lại.
+
+Không ghép các ảnh của nhiều vật thể khác nhau thành một mô hình.
+
+---
+
+# PHẦN 4. ĐO KÍCH THƯỚC THỰC TẾ
+
+Không được để AI Vision tự suy đoán kích thước rồi xem đó là số đo chính xác.
+
+Hãy thiết kế hệ thống kết hợp Computer Vision và vật chuẩn kích thước.
+
+## 4.1. Vật chuẩn tham chiếu
+
+Hỗ trợ:
+
+- Thước kẻ.
+- Thẻ kích thước tiêu chuẩn.
+- Giấy A4.
+- ArUco Marker.
+- Calibration Board.
+
+Ưu tiên ArUco Marker hoặc vật chuẩn có kích thước được người dùng xác nhận.
+
+Người dùng đặt vật chuẩn cạnh vật thể trên cùng mặt phẳng.
+
+## 4.2. Tính tỷ lệ pixel/cm
+
+Khi vật chuẩn nằm cùng mặt phẳng và được nhìn gần vuông góc:
+
+Scale = Known Reference Length / Reference Pixel Length.
+
+Kích thước vật thể:
+
+Real Length = Object Pixel Length × Scale.
+
+Không áp dụng công thức này một cách máy móc khi vật thể có chiều sâu, mặt phẳng nghiêng hoặc phối cảnh mạnh.
+
+Trong những trường hợp đó, phải xem xét hiệu chỉnh camera, homography hoặc các phương pháp đo đa góc.
+
+## 4.3. Phân biệt phương pháp đo
+
+Mỗi thông số phải có measurementMethod:
+
+- reference_object.
+- calibrated_camera.
+- multi_view_estimation.
+- user_input.
+- ai_estimation.
+- unknown.
+
+Mỗi thông số phải có confidence riêng.
+
+Không sử dụng một confidence chung để đại diện cho toàn bộ kết quả.
+
+Nếu không đủ dữ liệu, hãy trả về null.
+
+## 4.4. Các kích thước cần xác định
+
+- Length.
+- Width.
+- Height.
+- Depth.
+- Max Diameter.
+- Min Diameter.
+- Thickness.
+- Bounding Box 3D.
+- Aspect Ratio.
+
+Đối với vật thể bất quy tắc, cần có thêm kích thước tổng thể và các thông số hình học tương đối.
+
+---
+
+# PHẦN 5. NÂNG CẤP GEMINI VISION – PHÂN TÍCH CHI TIẾT VẬT THỂ
+
+Sử dụng Gemini Vision làm bộ phận hiểu ngữ nghĩa và phân tích hình ảnh.
+
+Trước khi gọi API, phải xác minh model ID hiện có và tương thích với SDK đang sử dụng bằng tài liệu chính thức của Google.
+
+Không tự đặt tên model.
+
+Không thay đổi model chỉ dựa trên suy đoán.
+
+## 5.1. Phân loại vật liệu
+
+Hệ thống phải phân biệt:
+
+- PET.
+- HDPE.
+- PVC.
+- LDPE.
+- PP.
+- PS.
+- Other Plastics.
+- Paper.
+- Cardboard.
+- Aluminum.
+- Steel.
+- Glass.
+- Fabric.
+- Denim.
+- Rubber.
+- Wood.
+- Mixed Materials.
+- Unknown.
+
+Nếu không thể phân biệt chính xác các loại nhựa chỉ bằng hình ảnh, phải trả về nhóm vật liệu có khả năng cao nhất và ghi rõ mức độ chắc chắn.
+
+Không được khẳng định thành phần hóa học chỉ dựa vào màu sắc hoặc hình dáng.
+
+## 5.2. Phân tích đặc điểm vật thể
+
+AI phải trả lời được:
+
+- Vật thể là gì?
+- Được cấu tạo từ vật liệu nào?
+- Có bao nhiêu bộ phận?
+- Các bộ phận được kết nối ra sao?
+- Hình dáng tổng thể thuộc loại nào?
+- Có những vùng cong hoặc lõm nào?
+- Có tay cầm, nắp, miệng hoặc chân đế không?
+- Bề mặt có nhãn, hoa văn hoặc gân nổi không?
+- Có bị móp, nứt hoặc biến dạng không?
+
+## 5.3. Phân tích hình học chuyên sâu
+
+Bổ sung các loại hình dạng:
+
+- Cylinder.
+- Box.
+- Sphere.
+- Cone.
+- Ellipsoid.
+- Irregular Solid.
+- Revolved Surface.
+- Extruded Shape.
+- Thin Surface.
+- Tubular Shape.
+- Composite Geometry.
+
+Đối với vật thể phức tạp, sử dụng nhiều primitive hoặc nhiều thành phần geometry để mô tả thay vì ép tất cả vào một hình cơ bản.
+
+## 5.4. Phân tích biên dạng
+
+Đối với vật thể tròn xoay, yêu cầu AI tạo profilePoints.
+
+Mỗi điểm gồm:
+
+- yRatio.
+- radiusRatio.
+
+Ví dụ:
+
+profilePoints: [
+  { "yRatio": 0.00, "radiusRatio": 0.52 },
+  { "yRatio": 0.10, "radiusRatio": 0.48 },
+  { "yRatio": 0.30, "radiusRatio": 0.40 },
+  { "yRatio": 0.60, "radiusRatio": 0.45 },
+  { "yRatio": 0.85, "radiusRatio": 0.20 },
+  { "yRatio": 1.00, "radiusRatio": 0.15 }
+]
+
+Đây chỉ là ví dụ cấu trúc.
+
+AI phải tạo biên dạng dựa trên vật thể thật trong ảnh, không sao chép một profile cố định.
+
+Nếu profile không đủ dữ liệu, hãy đánh dấu là ước lượng.
+
+---
+
+# PHẦN 6. THIẾT KẾ JSON CHUẨN CHO HỆ THỐNG
+
+Xây dựng một schema thống nhất để truyền dữ liệu từ AI sang Three.js.
+
+Cấu trúc đề xuất:
+
+{
+  "analysisId": "unique_id",
+  "status": "success",
+
+  "object": {
+    "name": "Plastic Bottle",
+    "category": "plastic",
+    "material": "PET",
+    "materialConfidence": 0.94,
+    "shapeType": "irregular_revolved",
+    "objectConfidence": 0.96
+  },
+
+  "dimensions": {
+    "heightCm": 22.5,
+    "widthCm": 6.5,
+    "depthCm": 6.5,
+    "maxDiameterCm": 6.5,
+    "minDiameterCm": 1.8,
+    "measurementMethod": "reference_object",
+    "confidence": 0.91
+  },
+
+  "geometry": {
+    "geometryType": "lathe",
+    "profilePoints": [],
+    "components": [],
+    "hasHandle": false,
+    "hasCap": true,
+    "hasLabel": true,
+    "hasIndentation": true
+  },
+
+  "appearance": {
+    "primaryColor": "#55A878",
+    "roughness": 0.4,
+    "metalness": 0,
+    "opacity": 0.7,
+    "transparent": true
+  },
+
+  "segmentation": {
+    "boundingBox": [],
+    "maskUrl": null
+  },
+
+  "quality": {
+    "imageQuality": 0.95,
+    "geometryConfidence": 0.88,
+    "measurementConfidence": 0.91
+  }
+}
+
+Đây là cấu trúc định hướng, cần điều chỉnh thành TypeScript interface và schema validation thực tế.
+
+Yêu cầu:
+
+- Có kiểm tra kiểu dữ liệu.
+- Có kiểm tra giá trị hợp lệ.
+- Không cho phép kích thước âm.
+- Không cho phép màu sai định dạng.
+- Không cho phép profilePoints chứa giá trị vô lý.
+- Không tự điền giá trị mặc định giả.
+- Có phiên bản schema để thuận tiện nâng cấp sau này.
+
+---
+
+# PHẦN 7. NÂNG CẤP THREE.JS – TÁI TẠO HÌNH HỌC 3D
+
+Đây là trọng tâm kỹ thuật lớn nhất của dự án.
+
+Không được chỉ sử dụng các mô hình 3D dựng sẵn để đại diện cho mọi loại rác.
+
+Hãy phát triển một Geometry Reconstruction Engine có thể lựa chọn phương pháp dựng hình dựa trên dữ liệu đầu vào.
+
+## 7.1. Hệ thống lựa chọn Geometry
+
+Xây dựng bộ phân loại:
+
+Nếu geometryType = lathe:
+→ Sử dụng THREE.LatheGeometry.
+
+Nếu geometryType = box hoặc extruded:
+→ Sử dụng BoxGeometry hoặc ExtrudeGeometry.
+
+Nếu geometryType = tubular:
+→ Sử dụng TubeGeometry.
+
+Nếu geometryType = irregular:
+→ Sử dụng BufferGeometry hoặc phương pháp tái tạo mesh phù hợp.
+
+Nếu vật thể có nhiều bộ phận:
+→ Dựng nhiều mesh riêng biệt và kết hợp thành một group.
+
+Không lựa chọn geometry chỉ dựa trên tên vật liệu.
+
+Phải dựa trên shapeType, geometryType và thông số hình học.
+
+## 7.2. LatheGeometry – Vật thể tròn xoay
+
+Dành cho:
+
+- Chai nhựa.
+- Chai thủy tinh.
+- Lon nhôm.
+- Ly.
+- Lọ.
+- Bình.
+- Ống.
+
+Chuyển profilePoints thành THREE.Vector2.
+
+Sử dụng:
+
+new THREE.LatheGeometry(points, segments).
+
+Yêu cầu:
+
+- Điều chỉnh độ phân giải theo độ phức tạp.
+- Giữ đúng tỷ lệ chiều cao và bán kính.
+- Tạo cổ, thân, vai và đáy.
+- Hỗ trợ đáy lồi, lõm hoặc có múi.
+- Hỗ trợ nắp chai và các bộ phận riêng.
+- Tính toán normals phù hợp.
+- Tránh tạo mặt bị đảo hoặc mesh lỗi.
+
+Không dùng một profile chung cho mọi chai.
+
+## 7.3. ExtrudeGeometry – Hộp và vật thể dạng tấm
+
+Dành cho:
+
+- Hộp carton.
+- Bìa giấy.
+- Miếng nhựa.
+- Các vật thể có tiết diện cố định.
+
+Yêu cầu:
+
+- Dựng đúng kích thước.
+- Tạo cạnh và mặt riêng biệt.
+- Hỗ trợ độ dày.
+- Hỗ trợ đường gấp.
+- Hỗ trợ nhiều bộ phận ghép nối.
+
+## 7.4. BufferGeometry – Vật thể bất quy tắc
+
+Dành cho:
+
+- Chai bị móp.
+- Nhựa bị biến dạng.
+- Vật liệu tái chế không đồng đều.
+- Các vật thể có bề mặt phức tạp.
+
+Phải có cơ chế kiểm tra mesh:
+
+- Vertex validity.
+- Face validity.
+- Normals.
+- Bounding Box.
+- Degenerate triangles.
+- NaN và Infinity.
+- Memory usage.
+
+## 7.5. Multi-Part Geometry
+
+Không gộp toàn bộ vật thể thành một mesh nếu cần quan sát cấu tạo.
+
+Ví dụ chai nhựa phải có thể chia thành:
+
+- Bottle Body.
+- Bottle Neck.
+- Bottle Cap.
+- Label.
+- Bottom Structure.
+
+Ví dụ hộp carton:
+
+- Front Panel.
+- Back Panel.
+- Side Panels.
+- Top Flaps.
+- Bottom Flaps.
+
+Điều này giúp hệ thống hỗ trợ Exploded View và Highlight.
+
+---
+
+# PHẦN 8. TEXTURE MAPPING VÀ VẬT LIỆU
+
+Mô hình 3D phải giống vật thể thật về màu sắc và đặc điểm bề mặt.
+
+Không chỉ sử dụng một màu đơn giản cho toàn bộ mesh.
+
+## 8.1. Texture Extraction
+
+Sử dụng ảnh gốc và ảnh đã phân đoạn để:
+
+- Xác định vùng bề mặt.
+- Cắt các vùng texture phù hợp.
+- Giữ lại nhãn sản phẩm.
+- Giữ lại hoa văn.
+- Giữ lại các chi tiết đặc trưng.
+
+## 8.2. UV Mapping
+
+Tạo UV phù hợp với từng loại hình học.
+
+Đối với chai:
+
+- Dùng cylindrical UV mapping cho thân.
+- Xử lý riêng phần cổ và đáy.
+- Tránh kéo giãn nhãn.
+
+Đối với hộp:
+
+- Ánh xạ texture theo từng mặt.
+- Giữ đúng tỷ lệ.
+- Tránh sai hướng texture.
+
+Đối với vải:
+
+- Xử lý texture bề mặt.
+- Giữ đặc điểm hoa văn.
+- Mô phỏng nếp gấp ở mức phù hợp.
+
+Không được sử dụng texture một cách máy móc khiến hình ảnh bị méo hoặc sai cấu trúc.
+
+## 8.3. PBR Materials
+
+Sử dụng MeshStandardMaterial hoặc MeshPhysicalMaterial phù hợp.
+
+Phân tích:
+
+- Base Color.
+- Roughness.
+- Metalness.
+- Opacity.
+- Transparency.
+- Clearcoat nếu phù hợp.
+
+Lưu ý: Các thông số vật liệu suy ra từ ảnh chỉ là ước lượng thị giác, không phải kết quả đo đặc tính vật lý.
+
+---
+
+# PHẦN 9. IMAGE-TO-3D – TÁI TẠO MESH THẬT
+
+Nghiên cứu bổ sung một nhánh AI Image-to-3D độc lập.
+
+Có thể đánh giá:
+
+- Tripo3D.
+- Meshy.
+- Hunyuan3D.
+- TripoSR.
+- InstantMesh.
+
+Không bắt buộc phải tích hợp tất cả.
+
+Hãy so sánh:
+
+- Chất lượng mesh.
+- Chất lượng texture.
+- Khả năng nhận ảnh nhiều góc.
+- Định dạng đầu ra.
+- Tốc độ xử lý.
+- Chi phí.
+- Giới hạn API.
+- Khả năng triển khai thực tế.
+
+Chọn giải pháp phù hợp nhất với kiến trúc hiện tại.
+
+## 9.1. Quy trình Image-to-3D
+
+1. Nhận ảnh đã khoanh vùng.
+2. Nhận segmentation mask.
+3. Kiểm tra chất lượng ảnh.
+4. Gửi ảnh đến dịch vụ Image-to-3D.
+5. Nhận kết quả mesh.
+6. Kiểm tra file GLB.
+7. Kiểm tra texture.
+8. Chuẩn hóa hướng và tỷ lệ.
+9. Nạp bằng GLTFLoader.
+10. Hiển thị trong MaterialScanner3D.
+
+## 9.2. Kết hợp Parametric 3D và Image-to-3D
+
+Không sử dụng Image-to-3D cho mọi vật thể.
+
+Xây dựng hệ thống lựa chọn:
+
+- Vật thể đơn giản, có hình học rõ ràng: Parametric 3D.
+- Vật thể có cấu trúc phức tạp: Image-to-3D.
+- Vật thể không đủ dữ liệu: yêu cầu chụp thêm.
+- Dịch vụ Image-to-3D lỗi: chuyển sang Parametric 3D nếu có đủ dữ liệu.
+
+Không được tuyên bố GLB có kích thước chính xác chỉ vì mô hình được tạo từ ảnh.
+
+Kích thước thực phải được chuẩn hóa bằng dữ liệu đo độc lập.
+
+---
+
+# PHẦN 10. HỆ THỐNG KIỂM TRA VÀ CẢI THIỆN MÔ HÌNH 3D
+
+Sau khi dựng xong, phải có bước đánh giá.
+
+Các tiêu chí:
+
+1. Shape Similarity.
+2. Dimension Accuracy.
+3. Proportion Accuracy.
+4. Surface Similarity.
+5. Texture Similarity.
+6. Geometry Completeness.
+
+Nếu có nhiều ảnh đầu vào, hãy so sánh mô hình với các góc ảnh tương ứng.
+
+Có thể sử dụng:
+
+- Reprojection Error.
+- Silhouette Overlap.
+- Bounding Box Comparison.
+- Multi-view Consistency.
+- Chamfer Distance khi có dữ liệu hình học tham chiếu.
+
+Không tạo ra một điểm Accuracy phần trăm giả định nếu không có phương pháp đo thực tế.
+
+Nếu mô hình chưa đạt chất lượng, cần xác định nguyên nhân:
+
+- Ảnh không đủ góc.
+- Thiếu vật chuẩn.
+- Segmentation sai.
+- Hình học AI không đầy đủ.
+- Texture không phù hợp.
+- Image-to-3D không ổn định.
+
+Cho phép người dùng chỉnh sửa kích thước và xem mô hình cập nhật trực tiếp.
+
+---
+
+# PHẦN 11. TÍCH HỢP VỚI KIẾN TRÚC RECYCLE ART STUDIO
+
+Không làm hỏng các tính năng cũ.
+
+Phải giữ lại:
+
+- Material Capture.
+- Material Classification.
+- Safety Analysis.
+- Geometry Calculator.
+- Material Inventory.
+- Craft Recommendations.
+- Interactive Craft Guide.
+- CraftViewer3D.
+- Community.
+- Saved Projects.
+
+## 11.1. MaterialScanner3D
+
+Nâng cấp thành hệ thống hiển thị mô hình vật thể thực tế sau khi quét.
+
+Hỗ trợ:
+
+- Xoay 360 độ.
+- Zoom.
+- Đo chiều dài, chiều rộng, chiều cao.
+- Hiển thị thông số.
+- Hiển thị texture.
+- Chuyển đổi giữa mô hình Parametric và GLB.
+- Hiển thị độ tin cậy.
+
+## 11.2. CraftViewer3D
+
+Giữ vai trò hiển thị sản phẩm tái chế.
+
+Phải phân biệt:
+
+- Mô hình rác thải ban đầu.
+- Mô hình sản phẩm tái chế sau khi chế tạo.
+
+Không dùng mesh của rác thải ban đầu thay cho mô hình sản phẩm tái chế.
+
+Giữ lại:
+
+- Exploded View.
+- Highlight từng bộ phận.
+- Hướng dẫn từng bước.
+- Hiển thị đường cắt.
+- Hiển thị vị trí ghép nối.
+
+## 11.3. Đồng bộ dữ liệu
+
+Kết quả AI phải được truyền chính xác đến:
+
+- ClassificationSafetyCard.
+- GeometryCalculatorCard.
+- MaterialScanner3D.
+- Material Inventory.
+- Craft Recommendation Engine.
+
+Không để mỗi component sử dụng một bản dữ liệu khác nhau.
+
+---
+
+# PHẦN 12. API VÀ BACKEND
+
+Tạo hoặc nâng cấp các endpoint phù hợp với kiến trúc hiện tại.
+
+Có thể tổ chức theo các nhóm:
+
+POST /api/analyze-materials
+
+POST /api/segment-object
+
+POST /api/estimate-geometry
+
+POST /api/reconstruct-3d
+
+GET /api/reconstruction/:id
+
+Không bắt buộc sử dụng chính xác các endpoint này nếu kiến trúc hiện tại có cách tổ chức tốt hơn.
+
+Yêu cầu:
+
+- Validate đầu vào.
+- Kiểm tra MIME type.
+- Giới hạn dung lượng ảnh.
+- Tối ưu ảnh.
+- Timeout.
+- Retry.
+- Xử lý lỗi.
+- Quản lý API Key ở backend.
+- Không cho phép URL tùy ý dẫn đến SSRF.
+- Kiểm tra định dạng file GLB.
+- Không tin tưởng dữ liệu JSON từ AI khi chưa validation.
+
+Đối với các tác vụ Image-to-3D lâu, sử dụng cơ chế job hoặc trạng thái xử lý thay vì giữ request HTTP quá lâu.
+
+---
+
+# PHẦN 13. GIAO DIỆN VÀ TRẢI NGHIỆM NGƯỜI DÙNG
+
+Giữ phong cách hiện tại của website.
+
+Tập trung cải tiến màn hình quét vật liệu.
+
+Thiết kế quy trình dạng Wizard:
+
+STEP 1 – PREPARE
+
+Hướng dẫn chuẩn bị vật thể và môi trường chụp.
+
+STEP 2 – CAPTURE
+
+Mở camera hoặc tải ảnh.
+
+STEP 3 – SELECT OBJECT
+
+Khoanh vùng vật thể cần nhận diện.
+
+STEP 4 – SEGMENTATION
+
+AI tách vật thể khỏi nền.
+
+STEP 5 – IMAGE QUALITY
+
+Kiểm tra chất lượng ảnh.
+
+STEP 6 – MULTI-VIEW
+
+Yêu cầu chụp thêm góc nếu cần.
+
+STEP 7 – DIMENSION
+
+Đo hoặc ước lượng kích thước.
+
+STEP 8 – AI ANALYSIS
+
+Phân tích vật liệu, hình dáng và cấu trúc.
+
+STEP 9 – 3D RECONSTRUCTION
+
+Dựng mô hình 3D.
+
+STEP 10 – RESULT
+
+Hiển thị kết quả, thông số và độ tin cậy.
+
+STEP 11 – SAVE
+
+Lưu vào kho vật liệu hoặc chuyển sang Xưởng tái chế.
+
+Mỗi bước phải có:
+
+- Trạng thái.
+- Hướng dẫn.
+- Thông báo lỗi.
+- Nút quay lại.
+- Nút tiếp tục.
+
+Không để người dùng bị mắc kẹt nếu một bước xử lý thất bại.
+
+---
+
+# PHẦN 14. KIỂM THỬ THỰC TẾ
+
+Sau khi hoàn thành, phải kiểm thử bằng các vật thể:
+
+1. Chai nhựa PET tròn.
+2. Chai nhựa vuông.
+3. Chai nhựa trong suốt.
+4. Lon nhôm.
+5. Hộp carton.
+6. Nắp chai.
+7. Vải denim.
+8. Mảnh vải không đều.
+9. Chai nhựa bị móp.
+10. Vật thể có nhiều bộ phận.
+
+Mỗi trường hợp phải kiểm tra:
+
+- Nhận diện đúng vật thể.
+- Phân loại vật liệu.
+- Khoanh vùng.
+- Segmentation.
+- Chất lượng ảnh.
+- Kích thước.
+- Shape Type.
+- Geometry.
+- Texture.
+- Hiển thị 3D.
+- Hiệu suất.
+
+Ngoài ra, phải kiểm tra:
+
+- Ảnh quá mờ.
+- Ảnh thiếu sáng.
+- Ảnh có nhiều vật thể.
+- Vật thể bị che khuất.
+- Vật thể trong suốt.
+- Ảnh không có vật chuẩn.
+- Người dùng chụp thiếu góc.
+- API AI bị lỗi.
+- Mất kết nối mạng.
+- File GLB không hợp lệ.
+
+Không được đánh dấu một trường hợp là thành công nếu chỉ hiển thị được một mô hình 3D chung chung.
+
+---
+
+# PHẦN 15. KẾ HOẠCH TRIỂN KHAI BẮT BUỘC
+
+Hãy chia quá trình thành các giai đoạn.
+
+## PHASE 1 – AUDIT
+
+Đọc toàn bộ source code.
+
+Xác định module cần sửa.
+
+Xác định các lỗi hiện có.
+
+Không chỉnh sửa trước khi hiểu kiến trúc.
+
+## PHASE 2 – AI VISION
+
+Sửa luồng xử lý ảnh.
+
+Hoàn thiện Gemini Vision.
+
+Xây dựng schema phân tích.
+
+Đảm bảo AI nhìn được ảnh thật.
+
+## PHASE 3 – CAPTURE & SEGMENTATION
+
+Xây dựng khoanh vùng.
+
+Tích hợp segmentation.
+
+Kiểm tra chất lượng ảnh.
+
+Xây dựng chụp nhiều góc.
+
+## PHASE 4 – DIMENSION & GEOMETRY
+
+Tích hợp vật chuẩn.
+
+Tính toán kích thước.
+
+Phân tích biên dạng.
+
+Chuẩn hóa dữ liệu hình học.
+
+## PHASE 5 – 3D ENGINE
+
+Xây dựng Geometry Reconstruction Engine.
+
+Tích hợp LatheGeometry.
+
+Tích hợp BufferGeometry.
+
+Tích hợp Texture Mapping.
+
+## PHASE 6 – IMAGE-TO-3D
+
+Đánh giá dịch vụ.
+
+Tích hợp GLB.
+
+Chuẩn hóa mesh.
+
+Tích hợp GLTFLoader.
+
+## PHASE 7 – INTEGRATION
+
+Kết nối toàn bộ module.
+
+Đồng bộ dữ liệu.
+
+Giữ chức năng tái chế hiện có.
+
+## PHASE 8 – TESTING
+
+Chạy typecheck.
+
+Chạy build.
+
+Kiểm tra runtime.
+
+Kiểm tra API.
+
+Kiểm tra các trường hợp thực tế.
+
+Báo cáo các vấn đề còn tồn tại.
+
+---
+
+# PHẦN 16. QUY TẮC LÀM VIỆC VỚI SOURCE CODE
+
+ĐÂY LÀ NHỮNG QUY TẮC KHÔNG ĐƯỢC VI PHẠM.
+
+1. Không xóa file nếu chưa xác định rõ tác dụng.
+2. Không viết lại một module đang hoạt động tốt chỉ vì muốn thay đổi kiến trúc.
+3. Không tự ý thay đổi toàn bộ giao diện.
+4. Không tạo các nút bấm chỉ có hình thức mà không có chức năng.
+5. Không tạo dữ liệu Demo để thay thế AI thật.
+6. Không hardcode kích thước của vật thể.
+7. Không hardcode một mô hình 3D cho tất cả vật liệu.
+8. Không để frontend chứa API Key.
+9. Không làm mất các chức năng cũ.
+10. Không bỏ qua xử lý lỗi.
+11. Không tuyên bố đã tích hợp API khi chưa có thông tin xác thực hoặc chưa gọi thành công.
+12. Không tạo một hệ thống phụ độc lập mà không tích hợp vào dự án chính.
+13. Không cài thêm thư viện trùng lặp nếu thư viện hiện tại đã đáp ứng.
+14. Không cập nhật dependency lớn nếu không cần thiết.
+15. Không sửa những file không liên quan đến mục tiêu khi chưa có lý do.
+
+Nếu thiếu API Key, GPU hoặc dịch vụ bên ngoài, hãy triển khai phần code có thể thực hiện và ghi rõ phần cần cấu hình.
+
+---
+
+# PHẦN 17. CÁCH PHẢN HỒI VÀ THỰC HIỆN
+
+Không chỉ trả lời bằng một bản kế hoạch dài rồi dừng lại.
+
+Bạn phải thực sự làm việc trên source code được cung cấp.
+
+Nếu môi trường có khả năng chỉnh sửa file, hãy trực tiếp sửa file.
+
+Nếu có khả năng chạy lệnh, hãy kiểm tra và chạy:
+
+- npm install khi cần.
+- npm run typecheck hoặc lệnh tương đương.
+- npm run build.
+- Các bài kiểm thử hiện có.
+
+Nếu một lệnh thất bại, hãy đọc lỗi và khắc phục.
+
+Sau mỗi giai đoạn, báo cáo:
+
+1. File đã chỉnh sửa.
+2. Chức năng đã nâng cấp.
+3. Công nghệ đã tích hợp.
+4. Lỗi đã khắc phục.
+5. Kết quả kiểm thử.
+6. Các API Key hoặc cấu hình còn thiếu.
+7. Những phần chưa hoàn thành.
+
+Nếu công việc vượt quá khả năng xử lý trong một lượt, hãy hoàn thành từng giai đoạn, giữ lại trạng thái code và tiếp tục từ phần còn dang dở. Không tuyên bố toàn bộ dự án đã hoàn thành khi mới thực hiện một phần.
+
+---
+
+# PHẦN 18. TIÊU CHUẨN SẢN PHẨM CUỐI CÙNG
+
+Recycle Art Studio phải hướng đến một quy trình hoàn chỉnh:
+
+NGƯỜI DÙNG CHUẨN BỊ VẬT THỂ
+↓
+CHỤP ẢNH Ở MÔI TRƯỜNG PHÙ HỢP
+↓
+KHOANH VÙNG ĐỐI TƯỢNG
+↓
+AI SEGMENTATION
+↓
+KIỂM TRA CHẤT LƯỢNG ẢNH
+↓
+CHỤP THÊM CÁC GÓC CẦN THIẾT
+↓
+AI VISION PHÂN TÍCH
+↓
+ĐO KÍCH THƯỚC VÀ ƯỚC LƯỢNG HÌNH HỌC
+↓
+TẠO DỮ LIỆU GEOMETRY
+↓
+PARAMETRIC 3D HOẶC IMAGE-TO-3D
+↓
+TEXTURE MAPPING
+↓
+HIỂN THỊ MÔ HÌNH 3D
+↓
+ĐÁNH GIÁ VÀ CHỈNH SỬA
+↓
+LƯU VẬT LIỆU VÀ CHUYỂN SANG XƯỞNG TÁI CHẾ
+
+**KẾT QUẢ MONG MUỐN:**
+
+Khi người dùng chụp một chai nhựa, hệ thống không chỉ nhận diện được đó là chai nhựa mà còn phải hiểu được hình dáng thân chai, cổ chai, đáy chai, nắp chai, kích thước và đặc điểm bề mặt.
+
+Khi người dùng chụp một hộp carton, hệ thống phải nhận diện được cấu trúc các mặt, chiều dài, chiều rộng, chiều cao và các nếp gấp.
+
+Khi người dùng chụp một vật thể bị biến dạng hoặc có hình dạng phức tạp, hệ thống phải biết lựa chọn phương pháp dựng hình phù hợp hoặc yêu cầu thêm dữ liệu.
+
+Mô hình 3D cuối cùng phải phản ánh vật thể ban đầu, không phải một mô hình mẫu có tên tương tự.
+
+**HÃY BẮT ĐẦU BẰNG VIỆC ĐỌC VÀ KIỂM TRA TOÀN BỘ SOURCE CODE. SAU ĐÓ TRIỂN KHAI CẢI TIẾN THEO CÁC PHASE TRÊN, ƯU TIÊN CAO NHẤT CHO AI VISION, SEGMENTATION, ĐO LƯỜNG VÀ 3D RECONSTRUCTION.**

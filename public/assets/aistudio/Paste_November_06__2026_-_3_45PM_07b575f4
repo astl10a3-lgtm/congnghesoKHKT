@@ -1,0 +1,759 @@
+XÂY DỰNG WEBSITE AI: RECYCLE ART STUDIO – BIẾN RÁC THẢI THÀNH SÁNG TẠO
+1. Vai trò và mục tiêu
+Bạn là một chuyên gia phát triển website, UI/UX Designer và kỹ sư AI. Hãy xây dựng một website hoàn chỉnh có tên Recycle Art Studio – Sáng tạo từ rác thải, giúp người dùng tận dụng các vật liệu đã qua sử dụng để tạo ra những món đồ thủ công hữu ích, đẹp mắt và thân thiện với môi trường.
+Ý tưởng cốt lõi: Người dùng chụp ảnh hoặc tải ảnh các vật liệu tái chế lên website. AI sẽ phân tích hình ảnh từ nhiều góc độ, nhận diện vật liệu, đánh giá đặc điểm và đề xuất những sản phẩm thủ công phù hợp nhất có thể làm từ những vật liệu đó.
+2. Chức năng chính
+A. Chụp ảnh và tải hình ảnh vật liệu
+Xây dựng một giao diện cho phép người dùng:
+•	Chụp ảnh trực tiếp bằng camera thiết bị.
+•	Tải ảnh có sẵn từ máy tính hoặc điện thoại.
+•	Tải lên nhiều ảnh của cùng một vật liệu.
+•	Hướng dẫn người dùng chụp vật liệu từ nhiều góc độ:
+o	Góc nhìn chính diện.
+o	Góc nhìn phía sau.
+o	Góc nhìn bên trái và bên phải.
+o	Góc nhìn từ trên xuống.
+o	Ảnh cận cảnh chất liệu hoặc các chi tiết đặc biệt.
+Hiển thị các ảnh đã tải lên dưới dạng thư viện ảnh nhỏ để người dùng kiểm tra, thêm hoặc xóa ảnh.
+Có thanh tiến trình thể hiện số góc chụp đã hoàn thành. Khuyến khích người dùng cung cấp ít nhất 3–5 góc ảnh để AI phân tích chính xác hơn.
+B. AI nhận diện và phân tích vật liệu
+Sau khi người dùng tải ảnh, AI cần thực hiện:
+•	Nhận diện loại vật liệu: chai nhựa, hộp giấy, bìa carton, lon nhôm, vải cũ, thủy tinh, nắp chai, ống hút, giấy báo...
+•	Ước lượng kích thước và hình dạng nếu ảnh có vật tham chiếu phù hợp.
+•	Phân tích màu sắc, kết cấu và tình trạng vật liệu.
+•	Xác định số lượng vật liệu có thể sử dụng.
+•	Nhận biết các đặc điểm có thể ảnh hưởng đến việc tái chế.
+Nếu không đủ dữ liệu, AI cần thông báo cho người dùng chụp bổ sung thay vì tự suy đoán.
+C. Đề xuất sản phẩm thủ công
+Dựa trên kết quả nhận diện, AI đề xuất ít nhất 5–10 sản phẩm thủ công có thể thực hiện.
+Mỗi sản phẩm cần có:
+•	Hình ảnh minh họa sản phẩm sau khi hoàn thành.
+•	Tên sản phẩm.
+•	Mô tả ngắn.
+•	Danh sách vật liệu cần sử dụng.
+•	Mức độ khó: Dễ, Trung bình, Khó.
+•	Thời gian dự kiến hoàn thành.
+•	Tỷ lệ tận dụng vật liệu hiện có.
+•	Những vật liệu cần bổ sung nếu có.
+Ưu tiên những sản phẩm tận dụng tối đa vật liệu người dùng đang có, hạn chế việc phải mua thêm nguyên liệu.
+Ví dụ:
+•	Chai nhựa → Chậu cây mini, hộp đựng bút, bình tưới cây.
+•	Bìa carton → Mô hình nhà, khung ảnh, hộp đựng đồ.
+•	Lon nước ngọt → Đồ trang trí, hộp cắm bút.
+•	Vải cũ → Túi vải, thú nhồi bông đơn giản.
+•	Nắp chai → Tranh ghép, đồ trang trí.
+•	Giấy báo → Giỏ đựng đồ, hoa giấy.
+D. Hướng dẫn thực hiện từng bước
+Khi người dùng chọn một sản phẩm, chuyển đến trang hướng dẫn chi tiết.
+Nội dung gồm:
+1.	Hình ảnh sản phẩm hoàn thiện.
+2.	Danh sách nguyên liệu cần chuẩn bị.
+3.	Dụng cụ cần thiết.
+4.	Các bước thực hiện được đánh số rõ ràng.
+5.	Hình ảnh minh họa cho từng bước.
+6.	Những lưu ý để sản phẩm đẹp và chắc chắn.
+7.	Các cảnh báo an toàn khi sử dụng kéo, keo dán và dụng cụ thủ công.
+Có nút đánh dấu hoàn thành từng bước để người dùng dễ theo dõi.
+E. Tùy chỉnh và tìm kiếm ý tưởng
+Cho phép người dùng lựa chọn:
+•	Sản phẩm trang trí.
+•	Đồ dùng học tập.
+•	Đồ dùng gia đình.
+•	Đồ chơi sáng tạo.
+•	Quà tặng handmade.
+•	Đồ dùng làm vườn.
+Bổ sung bộ lọc theo mức độ khó, thời gian thực hiện và loại vật liệu.
+3. Giao diện website
+Thiết kế theo phong cách hiện đại, trẻ trung, thân thiện với môi trường.
+Màu sắc chủ đạo:
+•	Xanh lá cây: biểu tượng của môi trường.
+•	Trắng: tạo cảm giác sạch sẽ.
+•	Xanh dương nhạt: tạo điểm nhấn công nghệ.
+Các khu vực chính:
+Trang chủ:
+•	Logo Recycle Art Studio.
+•	Slogan: "Biến rác thải thành những điều tuyệt vời".
+•	Giới thiệu ngắn về website.
+•	Nút "Bắt đầu sáng tạo".
+•	Một số sản phẩm tái chế nổi bật.
+Trang phân tích vật liệu:
+•	Khu vực chụp ảnh và tải ảnh.
+•	Hướng dẫn chụp nhiều góc độ.
+•	Thư viện ảnh vật liệu.
+•	Nút "Phân tích bằng AI".
+Trang kết quả:
+•	Thông tin vật liệu AI nhận diện được.
+•	Hình ảnh minh họa vật liệu.
+•	Danh sách sản phẩm đề xuất.
+•	Bộ lọc và sắp xếp sản phẩm.
+Trang hướng dẫn:
+•	Hình ảnh sản phẩm.
+•	Nguyên liệu và dụng cụ.
+•	Hướng dẫn từng bước.
+•	Tiến độ thực hiện.
+Trang ý tưởng cộng đồng:
+•	Trưng bày những sản phẩm tái chế do người dùng thực hiện.
+•	Cho phép đăng ảnh sản phẩm hoàn thành.
+•	Mô tả cách làm và vật liệu đã sử dụng.
+•	Cho phép yêu thích và bình luận.
+4. Yêu cầu về AI và công nghệ
+Đây là yêu cầu đặc biệt quan trọng:
+Website không được chỉ là một giao diện minh họa. Hãy tích hợp AI đa phương thức có khả năng phân tích hình ảnh thực tế.
+AI phải:
+•	Tiếp nhận nhiều ảnh của cùng một vật liệu trong một lần phân tích.
+•	Kết hợp thông tin từ tất cả các góc chụp.
+•	Không phân tích từng ảnh riêng lẻ rồi đưa ra những kết quả mâu thuẫn.
+•	Nhận diện các vật liệu xuất hiện trong ảnh.
+•	Đưa ra đề xuất dựa trên vật liệu thực tế.
+•	Giải thích vì sao sản phẩm được đề xuất phù hợp.
+•	Điều chỉnh đề xuất khi người dùng bổ sung ảnh hoặc thay đổi số lượng vật liệu.
+Sử dụng mô hình AI có hỗ trợ đầu vào hình ảnh, chẳng hạn Gemini Vision thông qua API phù hợp.
+Không giả lập kết quả AI bằng dữ liệu tĩnh. Nếu chưa cấu hình API, hãy thông báo rõ cho người dùng và cung cấp chế độ demo riêng biệt.
+5. Yêu cầu kỹ thuật
+•	Website tương thích với máy tính, máy tính bảng và điện thoại.
+•	Camera phải có khả năng hoạt động trên trình duyệt khi được cấp quyền và sử dụng môi trường HTTPS phù hợp.
+•	Hỗ trợ tải lên nhiều hình ảnh.
+•	Có trạng thái tải ảnh, phân tích và thông báo lỗi.
+•	Tối ưu tốc độ tải trang.
+•	Giao diện dễ sử dụng đối với học sinh và người mới bắt đầu.
+•	Có khả năng mở rộng thêm tài khoản người dùng và lưu trữ sản phẩm yêu thích.
+•	Bảo mật API Key bằng backend, tuyệt đối không để lộ API Key trong mã nguồn frontend.
+6. Trải nghiệm người dùng mong muốn
+Quy trình sử dụng website phải đơn giản:
+Bước 1: Người dùng truy cập website.
+Bước 2: Chụp ảnh hoặc tải lên hình ảnh vật liệu tái chế.
+Bước 3: Chụp thêm các góc độ khác nhau của vật liệu.
+Bước 4: Nhấn nút "Phân tích vật liệu bằng AI".
+Bước 5: AI nhận diện và phân tích vật liệu.
+Bước 6: AI đề xuất các sản phẩm thủ công phù hợp.
+Bước 7: Người dùng chọn sản phẩm yêu thích và xem hướng dẫn chi tiết.
+Bước 8: Hoàn thành sản phẩm và chia sẻ thành quả với cộng đồng.
+7. Yêu cầu cuối cùng
+Hãy xây dựng website có đầy đủ các trang và chức năng trên, không chỉ tạo bản thiết kế tĩnh.
+Ưu tiên trải nghiệm người dùng, tính thực tế, khả năng nhận diện hình ảnh và chất lượng đề xuất của AI.
+Hãy bắt đầu bằng việc xây dựng cấu trúc website hoàn chỉnh, thiết kế giao diện đẹp mắt, sau đó triển khai từng chức năng và kết nối AI thực tế.
+8. CHỨC NĂNG AI PHÂN LOẠI RÁC THẢI VÀ VẬT LIỆU
+A. Nhận diện và phân loại rác thải tự động
+Sau khi người dùng chụp ảnh và tải hình ảnh từ nhiều góc độ lên website, AI cần phân tích và phân loại từng vật liệu theo các nhóm:
+1.	Rác thải nhựa: Chai nhựa PET, hộp nhựa, túi nilon, nắp chai, ống hút...
+2.	Rác thải giấy: Giấy báo, giấy viết, bìa carton, hộp giấy...
+3.	Rác thải kim loại: Lon nhôm, vỏ hộp kim loại, dây kim loại...
+4.	Rác thải thủy tinh: Chai thủy tinh, lọ thủy tinh...
+5.	Rác thải vải và dệt may: Quần áo cũ, vải vụn, dây vải...
+6.	Rác thải hữu cơ: Vỏ trái cây, lá cây, bã cà phê...
+7.	Rác thải điện tử: Dây điện, linh kiện điện tử và các thiết bị điện tử cũ.
+8.	Rác thải khác: Những vật liệu không thuộc các nhóm trên.
+AI cần nhận diện tên vật liệu cụ thể thay vì chỉ đưa ra tên nhóm chung.
+B. Đánh giá khả năng tái sử dụng
+Sau khi phân loại, AI cần kiểm tra:
+•	Vật liệu còn nguyên vẹn hay đã bị hư hỏng?
+•	Có bị bẩn, ẩm mốc hoặc dính hóa chất không?
+•	Có thể tái sử dụng trực tiếp không?
+•	Có cần vệ sinh hoặc xử lý trước khi sử dụng không?
+•	Có phù hợp để làm đồ thủ công không?
+•	Có nguy cơ gây mất an toàn khi chế tạo không?
+Phân loại kết quả thành 4 trạng thái:
+•	Có thể sử dụng: Vật liệu phù hợp để làm đồ thủ công.
+•	Cần làm sạch: Có thể sử dụng sau khi vệ sinh đúng cách.
+•	Cần xử lý riêng: Cần quy trình xử lý hoặc người lớn hỗ trợ.
+•	Không nên tái sử dụng thủ công: Cần chuyển đến nơi thu gom hoặc xử lý phù hợp.
+Không được mặc định mọi loại rác đều có thể tái chế thành đồ thủ công.
+C. Hướng dẫn phân loại và xử lý vật liệu
+Sau khi nhận diện, website hiển thị hướng dẫn riêng cho từng vật liệu.
+Ví dụ:
+•	Chai nhựa: Phân loại theo loại nhựa nếu có ký hiệu, làm sạch và để khô trước khi sử dụng.
+•	Giấy carton: Loại bỏ phần bị ướt, mốc hoặc dính dầu mỡ.
+•	Lon nhôm: Làm sạch, kiểm tra cạnh sắc và không tự ý cắt lon nếu không có người lớn hỗ trợ.
+•	Chai thủy tinh: Kiểm tra tình trạng nứt vỡ, không sử dụng chai bị vỡ.
+•	Vải cũ: Kiểm tra tình trạng vải, giặt sạch và phơi khô.
+•	Rác hữu cơ: Ưu tiên hướng dẫn ủ phân hoặc các hình thức xử lý hữu cơ phù hợp thay vì mặc định dùng làm đồ thủ công.
+D. Phân tích ký hiệu vật liệu
+Nếu vật liệu có ký hiệu tái chế hoặc mã nhận diện nhựa, AI cần cố gắng đọc và giải thích:
+•	PET/PETE (số 1).
+•	HDPE (số 2).
+•	PVC (số 3).
+•	LDPE (số 4).
+•	PP (số 5).
+•	PS (số 6).
+•	Other (số 7).
+Không được chỉ dựa vào màu sắc hoặc hình dáng để khẳng định loại nhựa. Nếu không nhìn thấy ký hiệu, AI phải ghi rõ đây là nhận diện dự đoán và yêu cầu kiểm tra nhãn hoặc ký hiệu trên sản phẩm.
+E. Hệ thống quản lý vật liệu đã phân loại
+Tạo một khu vực có tên "Kho vật liệu tái chế của tôi".
+Tại đây, người dùng có thể:
+•	Xem danh sách vật liệu đã tải lên.
+•	Xem nhóm rác thải tương ứng.
+•	Theo dõi số lượng và tình trạng vật liệu.
+•	Chỉnh sửa thông tin nếu AI nhận diện sai.
+•	Xóa hoặc bổ sung vật liệu.
+•	Kết hợp nhiều loại vật liệu để tìm kiếm ý tưởng thủ công.
+F. Kết hợp phân loại với hệ thống đề xuất sản phẩm
+Đây là yêu cầu quan trọng nhất:
+AI phải sử dụng kết quả phân loại và đánh giá an toàn làm điều kiện đầu vào cho chức năng đề xuất sản phẩm.
+Quy trình bắt buộc:
+1.	Nhận hình ảnh từ nhiều góc độ.
+2.	Nhận diện từng loại vật liệu.
+3.	Phân loại theo nhóm rác thải.
+4.	Đánh giá tình trạng và khả năng sử dụng.
+5.	Loại bỏ các vật liệu không an toàn khỏi danh sách nguyên liệu chế tạo.
+6.	Chỉ đề xuất những sản phẩm phù hợp với vật liệu đủ điều kiện.
+7.	Hướng dẫn chuẩn bị vật liệu trước khi chế tạo.
+Ví dụ:
+Người dùng tải lên một chai nhựa, một hộp carton và một số nắp chai.
+AI trả về:
+•	Chai nhựa: Nhựa PET, cần vệ sinh và làm khô.
+•	Hộp carton: Giấy carton, có thể sử dụng nếu không bị ẩm mốc.
+•	Nắp chai: Cần kiểm tra loại nhựa và tình trạng thực tế.
+Sau đó AI đề xuất:
+•	Chậu cây mini từ chai nhựa.
+•	Mô hình ngôi nhà từ carton.
+•	Tranh ghép trang trí từ nắp chai.
+•	Mô hình trang trí kết hợp cả ba vật liệu.
+Mỗi đề xuất phải chỉ rõ vật liệu nào được sử dụng, vật liệu nào còn dư và những nguyên liệu cần bổ sung.
+G. Giao diện phân loại trực quan
+Thiết kế trang phân loại với:
+•	Hình ảnh vật liệu người dùng đã tải lên.
+•	Tên vật liệu được nhận diện.
+•	Biểu tượng riêng cho từng nhóm rác thải.
+•	Màu sắc phân biệt các nhóm.
+•	Trạng thái sử dụng của từng vật liệu.
+•	Hướng dẫn xử lý trước khi tái sử dụng.
+Có nút "Xác nhận phân loại" để người dùng kiểm tra và chỉnh sửa kết quả AI trước khi chuyển sang bước đề xuất sản phẩm.
+YÊU CẦU ĐẶC BIỆT: Không được để AI tự ý coi mọi vật liệu là an toàn hoặc có thể tái sử dụng. Khi hình ảnh không đủ rõ, phải yêu cầu chụp bổ sung hoặc xác nhận thủ công. Ưu tiên an toàn môi trường và sức khỏe người dùng.
+Quy trình hoạt động mới của website
+BƯỚC 1
+Chụp ảnh vật liệu
+Chụp 3–5 góc độ khác nhau
+BƯỚC 2
+AI nhận diện vật liệu
+Xác định chai nhựa, giấy, kim loại, vải...
+BƯỚC 3
+Phân loại rác thải
+Xác định nhóm và khả năng tái sử dụng
+BƯỚC 4
+Kiểm tra an toàn
+Làm sạch, xử lý hoặc loại bỏ vật liệu không phù hợp
+BƯỚC 5
+AI đề xuất sản phẩm
+Kết hợp các vật liệu đủ điều kiện để sáng tạo
+BƯỚC 6
+Bắt đầu chế tạo
+Hướng dẫn từng bước và chia sẻ thành quả
+9. HỆ THỐNG ĐỀ XUẤT SẢN PHẨM THEO NGUỒN VẬT LIỆU
+A. Hai chế độ đề xuất sản phẩm
+AI phải chia các sản phẩm được đề xuất thành hai nhóm riêng biệt:
+NHÓM 1: SẢN PHẨM TẬN DỤNG 100% VẬT LIỆU HIỆN CÓ
+Đây là những sản phẩm có thể được chế tạo hoàn toàn từ các vật liệu tái chế mà người dùng đã tải lên và được xác nhận đủ điều kiện sử dụng.
+Yêu cầu:
+•	Không cần mua thêm vật liệu bên ngoài.
+•	Tận dụng tối đa số lượng vật liệu hiện có.
+•	Có thể kết hợp nhiều loại rác thải khác nhau.
+•	Ưu tiên những sản phẩm có tính ứng dụng và thẩm mỹ cao.
+Ví dụ: Người dùng có chai nhựa, bìa carton và nắp chai. AI có thể đề xuất một mô hình ngôi nhà trang trí được làm hoàn toàn từ những vật liệu này.
+NHÓM 2: SẢN PHẨM KẾT HỢP VẬT LIỆU HIỆN CÓ VỚI VẬT LIỆU BỔ SUNG
+Đây là những sản phẩm sử dụng vật liệu tái chế mà người dùng đang sở hữu, kết hợp với một số nguyên liệu hoặc dụng cụ bổ sung để tạo ra sản phẩm hoàn chỉnh hơn.
+Yêu cầu:
+•	Vật liệu người dùng đã tải lên phải đóng vai trò thực sự trong sản phẩm.
+•	Liệt kê rõ vật liệu đã có.
+•	Liệt kê riêng những vật liệu cần bổ sung.
+•	Giải thích công dụng của từng vật liệu bổ sung.
+•	Ưu tiên những nguyên liệu dễ tìm, giá thành thấp và thân thiện với môi trường.
+•	Không đề xuất vật liệu bổ sung không cần thiết.
+Ví dụ:
+Người dùng có một chai nhựa và một hộp carton.
+AI có thể đề xuất:
+•	Đèn trang trí handmade: Chai nhựa + bìa carton + đèn LED phù hợp.
+•	Chậu cây trang trí: Chai nhựa + sỏi sạch + đất trồng.
+•	Mô hình xe: Chai nhựa + carton + nắp chai + keo dán phù hợp.
+Lưu ý: Với sản phẩm có sử dụng điện, chỉ hướng dẫn phương án điện áp thấp, an toàn và có người lớn hỗ trợ.
+B. Giao diện hiển thị kết quả
+Sau khi AI phân tích vật liệu, chia kết quả thành hai khu vực:
+Khu vực 1: "Sáng tạo 100% từ vật liệu của bạn".
+Khu vực 2: "Mở rộng sáng tạo với vật liệu bổ sung".
+Mỗi sản phẩm hiển thị dưới dạng một thẻ (Card), bao gồm:
+•	Ảnh minh họa sản phẩm hoàn thiện.
+•	Tên sản phẩm.
+•	Mô tả ngắn.
+•	Danh sách vật liệu sử dụng.
+•	Trạng thái vật liệu: Đã có / Cần bổ sung.
+•	Mức độ khó.
+•	Thời gian thực hiện dự kiến.
+•	Ước tính chi phí bổ sung nếu có.
+C. Bộ lọc sản phẩm
+Cho phép người dùng lựa chọn chế độ đề xuất:
+1.	Chỉ sử dụng vật liệu hiện có (100%).
+2.	Kết hợp vật liệu hiện có với vật liệu bổ sung.
+3.	Hiển thị tất cả sản phẩm phù hợp.
+Có thể sắp xếp theo:
+•	Tận dụng được nhiều vật liệu nhất.
+•	Ít cần mua thêm nguyên liệu nhất.
+•	Chi phí bổ sung thấp nhất.
+•	Dễ thực hiện nhất.
+•	Thời gian hoàn thành ngắn nhất.
+D. Hệ thống tính toán mức độ tận dụng vật liệu
+AI cần phân tích tỷ lệ vật liệu tái chế và vật liệu bổ sung trong từng sản phẩm.
+Hiển thị riêng:
+•	Số loại vật liệu tái chế được sử dụng.
+•	Số loại vật liệu bổ sung.
+•	Những vật liệu còn dư sau khi chế tạo.
+Nếu có đủ dữ liệu về khối lượng, tính tỷ lệ theo khối lượng:
+Tỷ lệ vật liệu tái chế (%) = (Khối lượng vật liệu tái chế / Tổng khối lượng vật liệu sản phẩm) × 100.
+Không được tự tạo ra tỷ lệ phần trăm nếu không có dữ liệu đo lường đáng tin cậy.
+E. Yêu cầu quan trọng đối với AI
+•	Luôn ưu tiên nhóm sản phẩm tận dụng 100% vật liệu hiện có.
+•	Tuy nhiên, không được ép AI tạo ra sản phẩm không thực tế chỉ để đạt tỷ lệ 100%.
+•	Nếu không có sản phẩm phù hợp, hãy chuyển sang đề xuất nhóm kết hợp vật liệu bổ sung.
+•	Phải đảm bảo sản phẩm có thể thực hiện được dựa trên đặc tính vật liệu.
+•	Không sử dụng vật liệu nguy hiểm hoặc không đủ điều kiện an toàn.
+•	Mỗi đề xuất phải giải thích rõ tại sao các vật liệu đó có thể kết hợp với nhau.
+10. AI 3D MATERIAL SCANNER – DỰNG MÔ HÌNH 3D VÀ ĐO LƯỜNG VẬT LIỆU
+A. Chức năng tạo mô hình 3D từ hình ảnh
+Sau khi người dùng tải lên nhiều hình ảnh của cùng một vật liệu từ các góc độ khác nhau, AI phải:
+1.	Phân tích và đối chiếu tất cả hình ảnh.
+2.	Xác định hình dạng tổng thể của vật liệu.
+3.	Nhận diện các bộ phận, đường cong, cạnh, mặt phẳng và phần rỗng.
+4.	Dựng một mô hình 3D trực quan tương ứng với vật liệu thực tế.
+5.	Hiển thị mô hình 3D ngay trên website.
+Mô hình 3D phải có khả năng:
+•	Xoay 360 độ.
+•	Phóng to và thu nhỏ.
+•	Quan sát từ trên xuống, phía dưới và các mặt bên.
+•	Hiển thị kích thước trên các trục X, Y, Z.
+•	Bật/tắt đường kích thước và lưới tọa độ.
+•	Hiển thị các bộ phận riêng biệt của vật liệu nếu có thể.
+Sử dụng công nghệ dựng hình 3D phù hợp như Three.js hoặc React Three Fiber.
+Không chỉ sử dụng một hình ảnh 2D được phóng to để giả lập mô hình 3D.
+B. Tính toán kích thước bằng toán học
+Sau khi dựng mô hình 3D, hệ thống cần xác định hình khối gần đúng của vật liệu và áp dụng các công thức toán học phù hợp.
+Ví dụ:
+1. Hình hộp chữ nhật
+•	Thể tích: V = a × b × c.
+•	Diện tích toàn phần: S = 2(ab + bc + ca).
+2. Hình trụ
+•	Thể tích: V = πr²h.
+•	Diện tích xung quanh: Sxq = 2πrh.
+•	Diện tích toàn phần: Stp = 2πr(r + h).
+3. Hình cầu
+•	Thể tích: V = 4/3 × πr³.
+•	Diện tích mặt cầu: S = 4πr².
+4. Hình nón
+•	Thể tích: V = 1/3 × πr²h.
+•	Diện tích xung quanh: Sxq = πrl.
+5. Hình dạng phức tạp
+Đối với vật liệu không có hình dạng hình học cơ bản, hệ thống cần sử dụng mô hình lưới 3D (3D Mesh) để ước lượng thể tích và diện tích bề mặt bằng phương pháp tính toán hình học số.
+Không được ép tất cả vật liệu vào một hình khối đơn giản nếu điều đó làm sai lệch kích thước thực tế.
+C. Xác định lượng vật liệu thực tế có thể sử dụng
+Đây là chức năng đặc biệt quan trọng.
+AI không chỉ tính kích thước bên ngoài mà còn phải ước lượng phần vật liệu thực sự có thể sử dụng để chế tạo.
+Ví dụ với một chai nhựa:
+•	Chiều cao tổng thể.
+•	Đường kính thân chai.
+•	Đường kính cổ chai.
+•	Dung tích ước tính.
+•	Diện tích bề mặt bên ngoài.
+•	Phần đáy có thể tận dụng.
+•	Phần thân có thể cắt và tạo hình.
+•	Phần cổ chai có thể tận dụng.
+Với một tấm bìa carton:
+•	Chiều dài.
+•	Chiều rộng.
+•	Độ dày.
+•	Diện tích bề mặt.
+•	Phần bị rách hoặc hư hỏng.
+•	Diện tích còn lại có thể sử dụng.
+Với vải:
+•	Chiều dài.
+•	Chiều rộng.
+•	Diện tích.
+•	Các vùng bị rách hoặc không sử dụng được.
+Phải tính đến độ dày vật liệu, các phần bị cong, méo, hư hỏng và phần hao hụt khi cắt.
+D. Xác định kích thước sản phẩm có thể chế tạo
+Dựa trên dữ liệu 3D, AI phải tính toán những sản phẩm có thể được tạo ra từ vật liệu hiện có.
+Ví dụ:
+Người dùng tải lên một chai nhựa PET có:
+•	Chiều cao 22 cm.
+•	Đường kính thân 7 cm.
+•	Dung tích khoảng 800 ml.
+AI có thể đề xuất:
+•	Hộp đựng bút với chiều cao phù hợp.
+•	Chậu cây mini có đường kính tương thích.
+•	Vật trang trí để bàn.
+•	Mô hình thủ công từ các phần thân chai.
+Mỗi đề xuất phải có kích thước dự kiến và giải thích phần nào của vật liệu được sử dụng.
+Không được chỉ đề xuất sản phẩm dựa trên tên vật liệu mà bỏ qua kích thước thực tế.
+E. Hệ thống đối chiếu kích thước vật liệu và sản phẩm
+AI phải thực hiện quá trình kiểm tra tính khả thi:
+1.	Xác định kích thước vật liệu đầu vào.
+2.	Xác định kích thước và yêu cầu nguyên liệu của sản phẩm.
+3.	Kiểm tra khả năng cắt, ghép, uốn hoặc tạo hình.
+4.	Ước tính lượng vật liệu cần sử dụng.
+5.	Kiểm tra lượng vật liệu còn lại.
+6.	Đánh giá sản phẩm có thực hiện được hay không.
+Nếu vật liệu không đủ kích thước, AI phải thông báo rõ và đề xuất sản phẩm nhỏ hơn hoặc phương án kết hợp vật liệu khác.
+F. Tạo bản xem trước sản phẩm 3D
+Khi người dùng chọn một sản phẩm được đề xuất, AI cần tạo mô hình 3D minh họa sản phẩm đó.
+Mô hình cần thể hiện:
+•	Hình dạng sản phẩm sau khi hoàn thành.
+•	Những bộ phận được làm từ vật liệu tái chế.
+•	Những bộ phận cần sử dụng vật liệu bổ sung.
+•	Vị trí ghép nối giữa các bộ phận.
+•	Kích thước dự kiến của sản phẩm.
+Cho phép người dùng xoay, phóng to và quan sát sản phẩm trước khi bắt đầu chế tạo.
+G. Bảng thông số phân tích 3D
+Tạo bảng thông số hiển thị:
+•	Tên vật liệu.
+•	Loại hình khối gần đúng.
+•	Chiều dài.
+•	Chiều rộng.
+•	Chiều cao.
+•	Đường kính nếu có.
+•	Diện tích bề mặt.
+•	Thể tích.
+•	Độ dày vật liệu nếu xác định được.
+•	Phần vật liệu có thể sử dụng.
+•	Độ chính xác của phép đo.
+Phân biệt rõ dữ liệu đo thực tế, dữ liệu ước lượng và dữ liệu người dùng nhập thủ công.
+H. Nguyên tắc đảm bảo độ chính xác
+•	Không khẳng định kích thước chính xác tuyệt đối chỉ dựa trên ảnh thông thường.
+•	Yêu cầu người dùng cung cấp ít nhất một vật tham chiếu có kích thước đã biết, chẳng hạn thước đo hoặc thẻ kích thước tiêu chuẩn, để hiệu chuẩn tỷ lệ.
+•	Nếu thiếu dữ liệu, phải hiển thị kích thước dưới dạng ước tính.
+•	Cho phép người dùng tự nhập hoặc chỉnh sửa kích thước.
+•	Nếu các góc chụp không đủ để dựng hình, yêu cầu chụp bổ sung.
+•	Không sử dụng diện tích bề mặt bên ngoài thay cho diện tích vật liệu có thể cắt và sử dụng.
+•	Mọi kết quả tính toán phải có cơ sở hình học và công thức rõ ràng.
+MỤC TIÊU CUỐI CÙNG: Biến AI thành một trợ lý thiết kế thủ công thông minh, có khả năng nhìn thấy, dựng hình, đo lường, tính toán và đề xuất những sản phẩm thực sự phù hợp với kích thước vật liệu mà người dùng đang sở hữu.
+ 
+3. Một lưu ý kỹ thuật rất quan trọng
+Để tính toán kích thước có độ tin cậy, website cần kết hợp ba nguồn dữ liệu:
+Công nghệ	Nhiệm vụ
+AI Vision	Nhận diện vật liệu và đặc điểm
+Photogrammetry / 3D Reconstruction	Dựng hình 3D từ nhiều ảnh
+Toán học và Geometry Engine	Tính diện tích, thể tích và kích thước
+Đặc biệt, cần có vật tham chiếu kích thước (ví dụ thước kẻ) trong ảnh để xác định tỷ lệ thực. Nếu không có, mô hình 3D vẫn có thể được dựng nhưng kích thước thực tế chỉ là ước lượng.
+Mình muốn nhấn mạnh một điểm: AI phải đề xuất sản phẩm dựa trên cả ba yếu tố:
+1.	Vật liệu thuộc loại gì?
+2.	Vật liệu có bao nhiêu và kích thước thực tế ra sao?
+3.	Hình dạng, diện tích và thể tích của vật liệu có đáp ứng yêu cầu chế tạo không?
+Như vậy, Recycle Art Studio sẽ trở thành một nền tảng kết hợp AI đa phương thức + mô hình 3D + toán học ứng dụng + sáng tạo tái chế, thay vì chỉ là một website gợi ý đồ handmade.
+11. HỆ THỐNG HƯỚNG DẪN CHẾ TẠO TƯƠNG TÁC BẰNG MÔ HÌNH 3D
+A. Tạo mô hình 3D cho từng sản phẩm được đề xuất
+Đối với mỗi sản phẩm mà AI đề xuất, hệ thống phải tạo một mô hình 3D trực quan thể hiện sản phẩm sau khi hoàn thành.
+Yêu cầu:
+•	Mô hình 3D phải có hình dạng gần với sản phẩm thực tế.
+•	Sử dụng đúng loại vật liệu mà người dùng đang sở hữu.
+•	Thể hiện rõ những bộ phận được làm từ vật liệu tái chế.
+•	Thể hiện những bộ phận được bổ sung bằng vật liệu khác.
+•	Có kích thước tương ứng với dữ liệu vật liệu đã phân tích.
+•	Cho phép xoay 360 độ, phóng to, thu nhỏ.
+•	Có thể quan sát từ nhiều góc độ khác nhau.
+B. Hướng dẫn chế tạo bằng văn bản
+Mỗi sản phẩm phải có một quy trình hướng dẫn chi tiết theo từng bước.
+Mỗi bước bao gồm:
+1.	Tên công đoạn.
+2.	Mô tả công việc cần thực hiện.
+3.	Vật liệu cần sử dụng.
+4.	Dụng cụ cần chuẩn bị.
+5.	Kích thước hoặc thông số cần chú ý.
+6.	Lưu ý về an toàn.
+7.	Hình ảnh hoặc mô hình minh họa tương ứng.
+Hướng dẫn phải dễ hiểu, phù hợp với người mới bắt đầu và không bỏ qua những công đoạn quan trọng.
+C. Biểu diễn từng bước trên mô hình 3D
+Đây là chức năng quan trọng nhất.
+Không chỉ hiển thị văn bản hướng dẫn, website phải biểu diễn trực tiếp từng công đoạn trên mô hình 3D.
+Ví dụ khi chế tạo một hộp đựng bút từ chai nhựa:
+Bước 1: Chuẩn bị vật liệu
+•	Hiển thị mô hình chai nhựa 3D ban đầu.
+•	Làm nổi bật phần thân chai sẽ được sử dụng.
+•	Đánh dấu kích thước cần thiết trên mô hình.
+Bước 2: Xác định vị trí tạo hình
+•	Hiển thị đường đánh dấu trên thân chai.
+•	Sử dụng đường nét hoặc màu sắc để phân biệt phần cần giữ và phần không sử dụng.
+•	Hiển thị chiều cao dự kiến của hộp bút.
+Bước 3: Tạo hình sản phẩm
+•	Mô phỏng quá trình phần thân chai được tách thành hình dạng hộp bút.
+•	Cho thấy sự thay đổi của mô hình trước và sau công đoạn.
+Bước 4: Trang trí
+•	Hiển thị các bộ phận trang trí được thêm vào mô hình.
+•	Cho phép quan sát vị trí gắn các chi tiết.
+Bước 5: Hoàn thiện
+•	Hiển thị mô hình 3D sản phẩm hoàn chỉnh.
+•	Hiển thị kích thước cuối cùng.
+•	Đối chiếu với mô hình ban đầu để thấy vật liệu đã được biến đổi như thế nào.
+Các ví dụ trên chỉ là quy trình minh họa. AI phải tự tạo các bước phù hợp với từng sản phẩm cụ thể.
+D. Điều khiển mô hình 3D trong quá trình hướng dẫn
+Thiết kế trình xem 3D tương tác với các chức năng:
+•	Xoay mô hình 360 độ.
+•	Phóng to và thu nhỏ.
+•	Xem toàn bộ sản phẩm.
+•	Xem riêng từng bộ phận.
+•	Ẩn hoặc hiện từng chi tiết.
+•	Tô sáng bộ phận đang được hướng dẫn.
+•	Hiển thị đường cắt, đường ghép và vị trí lắp ráp.
+•	Mô phỏng sự thay đổi của sản phẩm qua từng bước.
+Đặc biệt, cần có khả năng tách mô hình thành nhiều bộ phận (Exploded View) để người dùng dễ hiểu cách các chi tiết kết nối với nhau.
+E. Thanh điều hướng các bước chế tạo
+Bên dưới mô hình 3D cần có hệ thống điều khiển:
+•	Nút "Bước trước".
+•	Nút "Bước tiếp theo".
+•	Nút "Xem lại từ đầu".
+•	Nút "Xem mô hình hoàn chỉnh".
+•	Thanh tiến trình thể hiện số bước đã hoàn thành.
+Khi chuyển sang một bước mới:
+•	Văn bản hướng dẫn tự động thay đổi.
+•	Mô hình 3D chuyển sang trạng thái tương ứng.
+•	Bộ phận liên quan được làm nổi bật.
+•	Các kích thước cần chú ý được hiển thị.
+•	Những bộ phận không liên quan có thể được làm mờ.
+Cho phép người dùng tạm dừng, xem lại và chuyển qua các bước tùy ý.
+F. Chế độ mô phỏng quá trình chế tạo
+Tích hợp chế độ "Mô phỏng quá trình chế tạo".
+Khi kích hoạt, mô hình 3D sẽ tự động trình diễn lần lượt các công đoạn từ vật liệu ban đầu đến sản phẩm hoàn chỉnh.
+Ví dụ:
+•	Vật liệu ban đầu xuất hiện.
+•	Các bộ phận cần sử dụng được đánh dấu.
+•	Các chi tiết được tách ra.
+•	Các bộ phận được ghép nối.
+•	Sản phẩm hoàn thiện xuất hiện.
+Có thể điều chỉnh tốc độ mô phỏng và dừng tại bất kỳ công đoạn nào.
+Lưu ý: Chỉ mô phỏng trực quan các thao tác, không được coi mô phỏng là hướng dẫn an toàn cho những thao tác nguy hiểm.
+G. Đồng bộ hóa hướng dẫn và mô hình 3D
+Đây là yêu cầu bắt buộc:
+Văn bản và mô hình 3D phải được liên kết với nhau theo từng bước.
+Ví dụ:
+Khi văn bản hướng dẫn yêu cầu trang trí phần thân chai, mô hình 3D phải tự động làm nổi bật chính xác phần thân chai đó.
+Không được sử dụng một mô hình 3D cố định cho tất cả các bước.
+Mỗi công đoạn phải có trạng thái hình học tương ứng và được lưu lại để có thể xem lại.
+H. Công nghệ triển khai
+Sử dụng:
+•	Three.js hoặc React Three Fiber để hiển thị mô hình 3D.
+•	GLB/GLTF để lưu trữ và tải mô hình 3D.
+•	Animation và các trạng thái hình học để mô phỏng quá trình chế tạo.
+•	AI để tạo quy trình hướng dẫn phù hợp với từng loại vật liệu và sản phẩm.
+•	Hệ thống dữ liệu liên kết giữa từng bước hướng dẫn và mô hình 3D.
+Không chỉ tạo hình ảnh 3D tĩnh hoặc video minh họa. Phải xây dựng trình xem 3D có khả năng tương tác thực sự.
+I. Kết quả mong muốn
+Khi người dùng lựa chọn bất kỳ sản phẩm nào, website sẽ cung cấp:
+1.	Hình ảnh 3D sản phẩm hoàn thiện.
+2.	Kích thước dự kiến của sản phẩm.
+3.	Danh sách vật liệu và dụng cụ.
+4.	Hướng dẫn chế tạo bằng văn bản.
+5.	Mô hình 3D tương tác cho từng bước.
+6.	Mô phỏng quá trình biến đổi từ vật liệu ban đầu thành sản phẩm.
+7.	Các lưu ý an toàn trong quá trình thực hiện.
+MỤC TIÊU: Biến website thành một xưởng thủ công ảo, nơi người dùng có thể quan sát, tìm hiểu và mô phỏng toàn bộ quá trình biến những vật liệu tái chế thành sản phẩm hoàn chỉnh trước khi thực hiện ngoài đời thực.
+2. Bố cục giao diện hướng dẫn mình đề xuất
+ 
+12. HỆ THỐNG LƯU TRỮ DỰ ÁN CÁ NHÂN VÀ CỘNG ĐỒNG CHIA SẺ Ý TƯỞNG TÁI CHẾ
+A. Hệ thống lưu trữ dự án cá nhân (My Projects)
+Xây dựng một khu vực có tên "Dự án của tôi", cho phép người dùng lưu trữ và quản lý toàn bộ quá trình sáng tạo sản phẩm tái chế trên website.
+Mỗi người dùng cần có tài khoản riêng để quản lý các dự án của mình.
+1. Chức năng tạo và lưu dự án
+Người dùng có thể:
+•	Tạo dự án mới từ kết quả AI đề xuất.
+•	Lưu lại sản phẩm đang thiết kế hoặc đang thực hiện.
+•	Lưu mô hình 3D của sản phẩm.
+•	Lưu hình ảnh vật liệu đầu vào.
+•	Lưu kết quả phân tích và phân loại vật liệu của AI.
+•	Lưu các thông số kích thước, diện tích, thể tích đã tính toán.
+•	Lưu danh sách nguyên liệu và dụng cụ cần thiết.
+•	Lưu toàn bộ hướng dẫn chế tạo theo từng bước.
+•	Lưu trạng thái hoàn thành của từng công đoạn.
+•	Tải lên hình ảnh sản phẩm thực tế sau khi hoàn thành.
+2. Quản lý dự án
+Mỗi dự án cần có các thông tin:
+•	Tên dự án.
+•	Ảnh đại diện sản phẩm.
+•	Ngày tạo và ngày cập nhật gần nhất.
+•	Loại vật liệu sử dụng.
+•	Mô tả sản phẩm.
+•	Trạng thái: Ý tưởng, Đang thực hiện, Đã hoàn thành.
+•	Tiến độ thực hiện (%).
+Cho phép người dùng:
+•	Chỉnh sửa tên và nội dung dự án.
+•	Tiếp tục thực hiện dự án đã lưu.
+•	Nhân bản dự án để tạo phiên bản mới.
+•	Xóa dự án khi không còn nhu cầu.
+•	Tìm kiếm và lọc dự án theo tên, vật liệu hoặc trạng thái.
+•	Sắp xếp theo thời gian tạo và thời gian cập nhật.
+Đặc biệt, khi người dùng quay lại website, họ có thể tiếp tục dự án đúng tại bước đã dừng trước đó, bao gồm cả trạng thái mô hình 3D và hướng dẫn tương ứng.
+B. Hệ thống xuất bản và chia sẻ dự án
+Tích hợp chức năng "Chia sẻ lên cộng đồng" ngay trong trang chi tiết mỗi dự án.
+Khi một dự án được hoàn thành hoặc người dùng muốn chia sẻ ý tưởng, họ có thể xuất bản dự án lên website để những người khác truy cập và tham khảo.
+1. Thông tin khi đăng tải dự án
+Mỗi bài đăng cần có:
+•	Tên sản phẩm tái chế.
+•	Ảnh bìa sản phẩm.
+•	Bộ ảnh sản phẩm từ nhiều góc độ.
+•	Mô hình 3D tương tác nếu có.
+•	Mô tả ý tưởng sáng tạo.
+•	Nguồn gốc vật liệu đã sử dụng.
+•	Danh sách nguyên liệu và dụng cụ.
+•	Kích thước sản phẩm.
+•	Hướng dẫn chế tạo từng bước.
+•	Thời gian thực hiện.
+•	Mức độ khó.
+•	Hình ảnh sản phẩm thực tế sau khi hoàn thành.
+•	Những kinh nghiệm và lưu ý khi thực hiện.
+Cho phép người dùng lựa chọn:
+•	Chia sẻ công khai: Mọi người đều có thể xem.
+•	Chỉ chia sẻ bằng liên kết: Người có liên kết mới truy cập được.
+•	Lưu riêng tư: Chỉ chủ sở hữu có thể xem.
+2. Tạo trang chi tiết riêng cho mỗi ý tưởng
+Mỗi dự án được xuất bản phải có một trang chi tiết riêng với đường dẫn truy cập riêng biệt.
+Ví dụ:
+recycleartstudio.com/community/ten-du-an
+Người truy cập có thể xem:
+•	Hình ảnh sản phẩm.
+•	Mô hình 3D có thể xoay và phóng to.
+•	Thông tin vật liệu.
+•	Kích thước và thông số kỹ thuật.
+•	Hướng dẫn thực hiện.
+•	Các hình ảnh quá trình chế tạo.
+•	Tác giả của dự án.
+Khách truy cập không cần đăng nhập vẫn có thể xem những dự án được công khai.
+C. Xây dựng trang cộng đồng ý tưởng tái chế (Recycle Community)
+Tạo một trang riêng có tên "Cộng đồng sáng tạo", đóng vai trò như một thư viện ý tưởng tái chế do chính người dùng đóng góp.
+Mục tiêu là giúp mọi người có thể khám phá những cách sáng tạo mới từ các vật liệu tưởng chừng như không còn giá trị sử dụng.
+1. Giao diện trang cộng đồng
+Thiết kế theo dạng thư viện sản phẩm với các thẻ Card trực quan.
+Mỗi thẻ hiển thị:
+•	Ảnh sản phẩm.
+•	Tên ý tưởng.
+•	Tên người đăng.
+•	Mô tả ngắn.
+•	Loại vật liệu sử dụng.
+•	Mức độ khó.
+•	Thời gian thực hiện.
+•	Số lượt yêu thích.
+Khi nhấn vào một thẻ, chuyển đến trang chi tiết dự án.
+2. Tìm kiếm và khám phá ý tưởng
+Xây dựng công cụ tìm kiếm và bộ lọc thông minh:
+•	Tìm kiếm theo tên sản phẩm.
+•	Tìm kiếm theo loại vật liệu.
+•	Tìm kiếm theo công dụng sản phẩm.
+•	Lọc theo mức độ khó.
+•	Lọc theo thời gian thực hiện.
+•	Lọc theo sản phẩm không cần mua thêm nguyên liệu.
+•	Lọc theo sản phẩm tận dụng nhiều vật liệu tái chế.
+•	Lọc theo các dự án mới đăng.
+Chia nội dung thành các danh mục:
+•	Đồ trang trí.
+•	Đồ dùng học tập.
+•	Đồ dùng gia đình.
+•	Đồ chơi sáng tạo.
+•	Quà tặng handmade.
+•	Sản phẩm làm vườn.
+•	Mô hình nghệ thuật.
+3. Các khu vực đề xuất
+Trang cộng đồng có các khu vực:
+•	Ý tưởng mới nhất.
+•	Ý tưởng được yêu thích.
+•	Dự án nổi bật.
+•	Sản phẩm dễ thực hiện.
+•	Sản phẩm tận dụng 100% vật liệu tái chế.
+•	Những ý tưởng sáng tạo từ vật liệu tương tự với kho vật liệu của người dùng.
+D. Tương tác giữa những người dùng
+Cho phép người dùng tương tác với các dự án công khai.
+Các chức năng gồm:
+1. Yêu thích
+•	Có nút trái tim để yêu thích một dự án.
+•	Mỗi tài khoản chỉ được yêu thích một dự án một lần.
+•	Có thể bỏ yêu thích.
+•	Hiển thị tổng số lượt yêu thích.
+2. Bình luận
+•	Cho phép người dùng bình luận dưới mỗi dự án.
+•	Chủ dự án có thể trả lời bình luận.
+•	Cho phép chỉnh sửa hoặc xóa bình luận của chính mình.
+•	Có chức năng báo cáo bình luận không phù hợp.
+3. Lưu ý tưởng
+•	Cho phép lưu dự án của người khác vào danh sách yêu thích cá nhân.
+•	Tạo khu vực "Ý tưởng đã lưu".
+•	Có thể xem lại những dự án này bất cứ lúc nào.
+4. Chia sẻ liên kết
+•	Tạo liên kết chia sẻ cho từng dự án công khai.
+•	Có nút sao chép liên kết.
+•	Cho phép chia sẻ qua các nền tảng khác.
+E. Hệ thống hồ sơ cá nhân
+Tạo trang hồ sơ riêng cho từng người dùng.
+Thông tin hiển thị:
+•	Ảnh đại diện.
+•	Tên hiển thị.
+•	Giới thiệu ngắn.
+•	Ngày tham gia.
+•	Tổng số dự án đã đăng.
+•	Tổng số dự án đã hoàn thành.
+•	Danh sách ý tưởng công khai.
+•	Danh sách dự án được yêu thích.
+Người dùng có thể chỉnh sửa thông tin cá nhân và quản lý quyền riêng tư.
+F. Hệ thống quản lý nội dung và bảo mật
+Xây dựng hệ thống kiểm soát nội dung nhằm đảm bảo cộng đồng hoạt động lành mạnh.
+Yêu cầu:
+•	Người dùng chỉ được chỉnh sửa và xóa dự án do mình tạo.
+•	Người dùng không được tự ý chỉnh sửa dự án của người khác.
+•	Có chức năng báo cáo nội dung không phù hợp.
+•	Có công cụ quản trị để quản lý bài đăng, bình luận và tài khoản.
+•	Có thể ẩn hoặc gỡ bỏ nội dung vi phạm.
+•	Kiểm tra loại tệp và giới hạn dung lượng ảnh tải lên.
+•	Bảo vệ thông tin cá nhân và dữ liệu riêng tư.
+•	Không công khai hình ảnh hoặc dữ liệu thuộc dự án riêng tư.
+G. Cơ sở dữ liệu và yêu cầu kỹ thuật
+Không được xây dựng chức năng lưu trữ và chia sẻ chỉ mang tính giao diện minh họa.
+Phải triển khai cơ sở dữ liệu thực tế để lưu trữ và đồng bộ dữ liệu giữa các phiên đăng nhập và thiết bị.
+Đề xuất sử dụng:
+•	Firebase Authentication hoặc Supabase Auth để đăng ký, đăng nhập.
+•	PostgreSQL hoặc Firestore để lưu thông tin dự án, bài đăng và bình luận.
+•	Firebase Storage hoặc Supabase Storage để lưu hình ảnh, tệp mô hình 3D và tài liệu.
+•	Backend API để quản lý quyền truy cập, xử lý dữ liệu và xuất bản dự án.
+Thiết kế các bảng dữ liệu chính:
+1.	Users: Thông tin người dùng.
+2.	Projects: Dự án cá nhân.
+3.	ProjectMaterials: Vật liệu của từng dự án.
+4.	ProjectSteps: Các bước hướng dẫn chế tạo.
+5.	ProjectModels: Đường dẫn và thông tin mô hình 3D.
+6.	CommunityPosts: Các dự án được xuất bản.
+7.	Likes: Lượt yêu thích.
+8.	Comments: Bình luận.
+9.	SavedProjects: Các dự án được lưu từ cộng đồng.
+10.	Reports: Nội dung bị báo cáo.
+Thiết lập quan hệ dữ liệu hợp lý, phân quyền theo tài khoản và đảm bảo dữ liệu dự án không bị mất khi người dùng đăng xuất hoặc truy cập bằng thiết bị khác.
+H. Quy trình hoạt động tổng thể
+Đối với dự án cá nhân:
+1.	Người dùng đăng nhập.
+2.	Tải ảnh vật liệu lên.
+3.	AI nhận diện, phân loại và đánh giá vật liệu.
+4.	AI dựng mô hình 3D và phân tích kích thước.
+5.	AI đề xuất các sản phẩm phù hợp.
+6.	Người dùng lựa chọn một sản phẩm.
+7.	Website tạo hướng dẫn và mô hình 3D từng bước.
+8.	Người dùng nhấn "Lưu dự án".
+9.	Dự án được lưu vào mục "Dự án của tôi".
+10.	Người dùng có thể quay lại và tiếp tục bất cứ lúc nào.
+Đối với chia sẻ cộng đồng:
+1.	Người dùng mở dự án đã lưu.
+2.	Chọn "Chia sẻ lên cộng đồng".
+3.	Kiểm tra thông tin, hình ảnh và hướng dẫn.
+4.	Chọn chế độ công khai hoặc chia sẻ bằng liên kết.
+5.	Nhấn "Xuất bản dự án".
+6.	Dự án xuất hiện trong trang "Cộng đồng sáng tạo".
+7.	Những người dùng khác có thể truy cập, xem mô hình 3D, học cách thực hiện, yêu thích và bình luận.
+I. Yêu cầu giao diện và trải nghiệm
+Bổ sung các mục sau vào thanh điều hướng chính:
+•	Trang chủ.
+•	Phân tích vật liệu.
+•	Kho vật liệu của tôi.
+•	Dự án của tôi.
+•	Cộng đồng sáng tạo.
+•	Ý tưởng đã lưu.
+•	Hồ sơ cá nhân.
+Thiết kế đồng bộ với phong cách xanh lá, trắng và xanh dương của Recycle Art Studio.
+Ưu tiên giao diện trực quan, dễ sử dụng, phù hợp với học sinh và người yêu thích sáng tạo.
+J. Mục tiêu cuối cùng
+Biến Recycle Art Studio không chỉ thành một công cụ AI hỗ trợ tái chế mà còn trở thành một nền tảng sáng tạo cộng đồng.
+Người dùng có thể:
+•	Phân tích vật liệu bằng AI.
+•	Dựng và đo lường mô hình 3D.
+•	Tạo ra những sản phẩm thủ công phù hợp.
+•	Lưu trữ toàn bộ dự án cá nhân.
+•	Tiếp tục dự án bất cứ lúc nào.
+•	Chia sẻ những ý tưởng sáng tạo với mọi người.
+•	Khám phá và học hỏi các sản phẩm tái chế từ cộng đồng.
+YÊU CẦU BẮT BUỘC: Các chức năng lưu dự án, xuất bản, tìm kiếm, yêu thích, bình luận và chia sẻ phải hoạt động thực tế, có cơ sở dữ liệu và phân quyền đầy đủ. Không sử dụng dữ liệu giả lập để thay thế chức năng thật.

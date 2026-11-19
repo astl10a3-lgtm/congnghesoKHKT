@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+:root {
+  --eco-forest: #0A5C36;
+  --eco-green: #10B981;
+  --eco-emerald: #059669;
+  --eco-tech-blue: #0284C7;
+  --eco-neon: #4ADE80;
+  --eco-white: #FFFFFF;
+  --eco-surface: #F0FDF4;
+  --eco-border: rgba(16, 185, 129, 0.22);
+  --eco-shell-bg: rgba(255, 255, 255, 0.93);
+  --eco-shell-shadow: 0 22px 48px -16px rgba(10, 92, 54, 0.16), 0 8px 20px -10px rgba(2, 132, 199, 0.10);
+  --eco-card-shadow: 0 8px 24px -12px rgba(10, 92, 54, 0.12);
+  --eco-radius-shell: 18px;
+  --eco-radius-card: 16px;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #d7e5be;
+    color: #0f172a;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--eco-emerald);
+    outline-offset: 2px;
+  }
+}
+
+/* Primary Eco-Tech background (unmodified asset, cover, responsive positioning) */
+.eco-bg-canvas {
+  background-image: url('/assets/aistudio/image_5428f424.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 1024px) {
+  .eco-bg-canvas {
+    background-position: center top;
+  }
+}
+
+@media (max-width: 640px) {
+  .eco-bg-canvas {
+    background-position: 48% center;
+  }
+}
+
+/* Soft horizontal scrim keeping side-margin recycling & eco-tech motifs visible while framing center */
+.eco-bg-scrim {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(240, 253, 244, 0.45) 16%,
+    rgba(255, 255, 255, 0.72) 50%,
+    rgba(240, 253, 244, 0.45) 84%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .eco-bg-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0.56) 50%,
+      rgba(240, 253, 244, 0.38) 100%
+    );
+  }
+}
+
+/* Protective light central shell for all operational screens */
+.eco-content-shell {
+  background: var(--eco-shell-bg);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--eco-radius-shell);
+  border: 1px solid var(--eco-border);
+  box-shadow: var(--eco-shell-shadow);
+}
+
+/* Elevated clean white card inside protective shell */
+.eco-card {
+  background: var(--eco-white);
+  border: 1px solid var(--eco-border);
+  border-radius: var(--eco-radius-card);
+  box-shadow: var(--eco-card-shadow);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms ease, border-color 220ms ease;
+}
+
+@media (hover: hover) {
+  .eco-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(2, 132, 199, 0.32);
+    box-shadow: 0 14px 30px -12px rgba(10, 92, 54, 0.16), 0 4px 12px -4px rgba(2, 132, 199, 0.10);
+  }
+}
+
+/* Primary Eco-Tech action button */
+.eco-btn-primary {
+  background: linear-gradient(135deg, var(--eco-emerald) 0%, var(--eco-tech-blue) 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 18px -6px rgba(5, 150, 105, 0.38);
+  transition: filter 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.eco-btn-primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+  box-shadow: 0 12px 24px -6px rgba(2, 132, 199, 0.36);
+}
+
+.eco-btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Table header band */
+.eco-table-head {
+  background-color: var(--eco-surface);
+  color: var(--eco-forest);
+  border-bottom: 1px solid var(--eco-border);
+}
+
+@keyframes ecoFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eco-page-enter {
+  animation: ecoFadeUp 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

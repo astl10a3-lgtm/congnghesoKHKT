@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recycle Art Studio – Sáng Tạo Từ Rác Thải</title>
+    <meta name="description" content="Nền tảng AI phân tích rác thải đa góc độ, dựng mô hình 3D, đo lường kích thước, kiểm tra an toàn và hướng dẫn chế tạo đồ thủ công tái chế tương tác." />
+    <meta property="og:title" content="Recycle Art Studio – Sáng Tạo Từ Rác Thải" />
+    <meta property="og:description" content="Nền tảng AI phân tích rác thải đa góc độ, dựng mô hình 3D, đo lường kích thước, kiểm tra an toàn và hướng dẫn chế tạo đồ thủ công tái chế tương tác." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="/assets/aistudio/image_5428f424.png" />
+    <script>
+      // Defensive guard against browser extensions attempting `window.fetch = ...` when fetch only has a getter
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var desc = Object.getOwnPropertyDescriptor(window, 'fetch') || Object.getOwnPropertyDescriptor(Object.getPrototypeOf(window), 'fetch');
+          if (desc && !desc.writable && !desc.set) {
+            var currentFetch = originalFetch;
+            Object.defineProperty(window, 'fetch', {
+              get: function() { return currentFetch; },
+              set: function(v) { currentFetch = v; },
+              configurable: true,
+              enumerable: true
+            });
+          }
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
